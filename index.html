@@ -18,9 +18,9 @@
             background-color: #f9f9f9;
         }
         header {
-            background-color: #0056b3;
+            background-color: #0056b3; /* Deep Blue theme */
             color: white;
-            padding: 25px 15px;
+            padding: 25px 0;
             text-align: center;
         }
         header h1 {
@@ -38,22 +38,17 @@
             padding: 12px;
             border-bottom: 1px solid #ddd;
         }
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
         nav a {
             color: #333;
             text-decoration: none;
+            margin: 0 15px;
             font-weight: bold;
         }
         nav a:hover {
-            color: #ff6600;
+            color: #ff6600; /* Indane Orange hint */
         }
 
-        /* Container & Layout */
+        /* Container & About Section */
         .container {
             max-width: 800px;
             margin: 30px auto;
@@ -62,34 +57,6 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.06);
             border-radius: 8px;
         }
-
-        /* Action Buttons */
-        .cta-buttons {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-        .btn {
-            padding: 12px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 0.95rem;
-            transition: transform 0.2s, background-color 0.2s;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-        }
-        .btn-call { background-color: #0056b3; }
-        .btn-whatsapp { background-color: #25D366; }
-        .btn-request { background-color: #ff6600; }
-
-        /* Typography & Content */
         h2 {
             color: #0056b3;
             border-bottom: 2px solid #ff6600;
@@ -111,6 +78,19 @@
             margin-bottom: 20px;
         }
 
+        /* Owner Card Section */
+        .owner-section {
+            background-color: #f0f7ff;
+            border-left: 4px solid #0056b3;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .owner-section strong {
+            color: #0056b3;
+        }
+
+        /* Service Cards with Images */
         .service-block {
             margin-top: 30px;
             padding-top: 15px;
@@ -131,11 +111,39 @@
             flex-wrap: wrap;
         }
         .service-images img {
-            flex: 1 1 200px;
+            width: 48%;
+            max-width: 220px;
             height: 160px;
             object-fit: cover;
             border-radius: 8px;
             border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        /* Lists */
+        ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Action Buttons */
+        .btn-request {
+            padding: 10px 18px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+            background-color: #ff6600;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .btn-request:hover {
+            transform: translateY(-2px);
         }
 
         /* Modal Styles */
@@ -199,7 +207,6 @@
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
-            type: button;
         }
         .tab-btn.active {
             background: #0056b3;
@@ -246,6 +253,7 @@
         }
         .success-box h3 { color: #28a745; }
 
+        /* Footer / Contact */
         footer {
             background-color: #222;
             color: white;
@@ -253,6 +261,15 @@
             padding: 25px 15px;
             margin-top: 40px;
             font-size: 0.95rem;
+        }
+        footer p {
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+        .closing-note {
+            font-style: italic;
+            margin-top: 25px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -264,53 +281,83 @@
     </header>
 
     <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <a href="#">Home</a>
+        <a href="#">About Us</a>
+        <a href="#contact">Contact</a>
     </nav>
 
-    <div class="container">
-        <div class="cta-buttons">
-            <a href="tel:+917550961730" class="btn btn-call">📞 Call Us Directly</a>
-            <a href="https://wa.me/917550961730" target="_blank" class="btn btn-whatsapp">💬 Chat on WhatsApp</a>
-            <button class="btn btn-request" onclick="openModal('lpg')">📦 Book Service Online</button>
-        </div>
+    <!-- Contact Action Buttons -->
+    <div style="display: flex; gap: 15px; justify-content: center; margin: 25px 0 10px 0; flex-wrap: wrap;">
+        <a href="tel:+910000000000" style="padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; color: white; background-color: #0056b3;">📞 Call Us Directly</a>
+        <a href="https://wa.me/917550961730" target="_blank" style="padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; color: white; background-color: #25D366;">💬 Chat on WhatsApp</a>
+        <button class="btn-request" onclick="openModal('lpg')">📦 Request for LPG Service</button>
+    </div>
 
+    <div class="container">
         <section class="about-us">
             <h2>About S.Ali. Enterprise</h2>
             <p class="tagline"><strong>Your Trusted Family Partner for Energy and Precision.</strong></p>
             
-            <p>Welcome to <strong>S.Ali. Enterprise</strong>! We are dedicated to providing fast and reliable service for your household LPG and weighing scale requirements.</p>
+            <p>
+                Welcome to <strong>S.Ali. Enterprise</strong>! We are a dedicated family-run enterprise committed to serving our local community with essential LPG services and high-precision commercial machinery sales and repair.
+            </p>
 
-            <!-- Indane Oil Section -->
+            <!-- Indane Oil Service Section -->
             <div class="service-block">
                 <div class="service-header">
                     <h3>Indane Oil Sub-Dealer</h3>
-                    <button class="btn btn-request" onclick="openModal('lpg')">Order LPG Cylinder</button>
+                    <button class="btn-request" onclick="openModal('lpg')">Request for LPG Service</button>
                 </div>
                 <div class="service-images">
-                    <img src="indane oil.png" alt="Indane LPG Cylinder">
-                    <img src="14 kg.png" alt="14kg Gas Cylinder">
+                    <img src="indane oil.png" alt="Indane LPG Gas Cylinder Image 1">
+                    <img src="14 kg.png" alt="Indane LPG Gas Cylinder Image 2">
                 </div>
-                <p>We facilitate safe and dependable LPG distribution. Order directly using our quick online request form.</p>
+                <p>
+                    As a recognized sub-dealer for <strong>Indane Oil</strong>, we support your daily energy needs by facilitating smooth, safe, and dependable LPG distribution. We ensure every connection and service adheres to strict safety protocols so you can fuel your household or commercial kitchen worry-free.
+                </p>
             </div>
 
-            <!-- Weighing Scale Section -->
+            <!-- Weighing Scale Service Section -->
             <div class="service-block">
                 <div class="service-header">
                     <h3>Electronic Weighing Scale Sales & Repair</h3>
-                    <button class="btn btn-request" style="background-color: #0056b3;" onclick="openModal('scale')">Request Scale Repair</button>
+                    <button class="btn-request" style="background-color: #0056b3;" onclick="openModal('scale')">Scale Service</button>
                 </div>
                 <div class="service-images">
-                    <img src="30kg.png" alt="30kg Scale">
-                    <img src="100kg.png" alt="100kg Scale">
+                    <img src="30kg.png" alt="Electronic Weighing Scale Image 1">
+                    <img src="100kg.png" alt="Electronic Weighing Scale Image 2">
                 </div>
-                <p>High-precision scales, expert repair, and calibration services for commercial clients.</p>
+                <p>
+                    Beyond energy solutions, we are specialists in <strong>selling and repairing electronic weighing computer scales</strong>. Accurate measurements are essential for any successful commercial operation. Whether you need a new, highly accurate scale or fast repairs and technical calibration for existing equipment, our skilled team is here to keep your business running accurately and efficiently.
+                </p>
             </div>
+
+            <h3 style="margin-top: 30px;">Why Choose S.Ali. Enterprise?</h3>
+            <ul>
+                <li><strong>Family-Run Integrity:</strong> Personally managed with customer-first mindset.</li>
+                <li><strong>Dependable Sub-Dealer:</strong> Reliable access to official Indane LPG services.</li>
+                <li><strong>Expert Repair Services:</strong> Technical knowledge to service, repair, and maintain electronic scales.</li>
+                <li><strong>Complete Customer Satisfaction:</strong> Fast turnarounds, fair pricing, and clear communication.</li>
+            </ul>
+
+            <p class="closing-note">
+                Thank you for placing your trust in S.Ali. Enterprise. We look forward to serving you!
+            </p>
         </section>
     </div>
+
+    <!-- Google / Customer Rating Badge -->
+    <div style="background-color: #fff8e7; border: 1px solid #ffe0b2; border-radius: 8px; padding: 12px 20px; text-align: center; margin: 20px 0; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;">
+        <span style="font-size: 1.4rem; color: #ff9800; font-weight: bold;">4.5 ★★★★</span>
+        <span style="font-size: 0.95rem; color: #555;">Rated by <strong>500+ Happy Customers</strong> </span>
+    </div>
+
+    <footer id="contact">
+        <p><strong>Contact S.Ali. Enterprise Today!</strong></p>
+        <p>📍 Location: [Matiswar Bazar, Matiswar, Moinaguri, Purba Barddhaman, 713146 ] | ✉️ Email: [Isajidx19@gmail.com]</p>
+        <p style="color: #ff6600; font-weight: 500; margin-top: 5px;">🕒 Store Hours: Monday – Sunday (8:00 AM – 8:00 PM)</p>
+        <p style="margin-top: 10px; font-size: 0.8rem; color: #aaa;">&copy; 2026 S.Ali. Enterprise. Built with care .</p>
+    </footer>
 
     <!-- POPUP MODAL -->
     <div class="modal-overlay" id="requestModal">
@@ -322,20 +369,20 @@
                 
                 <!-- Tab Controls -->
                 <div class="tab-group">
-                    <button type="button" class="tab-btn active" id="tabLpg" onclick="switchTab('lpg')">🔥 LPG Delivery</button>
-                    <button type="button" class="tab-btn" id="tabScale" onclick="switchTab('scale')">⚖️ Scale Repair</button>
+                    <button type="button" class="tab-btn active" id="tabLpg" onclick="switchTab('lpg')">🔥 LPG Service</button>
+                    <button type="button" class="tab-btn" id="tabScale" onclick="switchTab('scale')">⚖️ Scale Service</button>
                 </div>
 
                 <!-- LIVE FORM WITH WEB3FORMS API INTEGRATION -->
                 <form id="serviceForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
                     
-                    <!-- Web3Forms Access Key (YOUR FREE KEY) -->
+                    <!-- Web3Forms Access Key -->
                     <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE">
                     <input type="hidden" name="subject" value="New Service Request from Website - S.Ali. Enterprise">
                     <input type="hidden" name="from_name" value="S.Ali. Enterprise Website">
 
                     <!-- Selected Category -->
-                    <input type="hidden" id="serviceType" name="Service Category" value="LPG Delivery">
+                    <input type="hidden" id="serviceType" name="Service Category" value="LPG Service">
 
                     <!-- Customer Name -->
                     <div class="form-group">
@@ -353,9 +400,10 @@
 
                     <!-- Dynamic Field: LPG Type OR Scale Details -->
                     <div class="form-group" id="dynamicOptionGroup">
-                        <label for="serviceOption" id="optionLabel">Cylinder Type *</label>
+                        <label for="serviceOption" id="optionLabel">Option *</label>
                         <select id="serviceOption" name="Requested Option">
                             <option value="14.2kg Domestic Cylinder">14.2 kg Domestic Cylinder</option>
+                            <option value="New Connection">New Connection</option>
                             <option value="19kg Commercial Cylinder">19 kg Commercial Cylinder</option>
                             <option value="5kg Compact Cylinder">5 kg Compact Cylinder</option>
                         </select>
@@ -363,12 +411,12 @@
 
                     <!-- Address -->
                     <div class="form-group">
-                        <label for="custAddress">Delivery / Workshop Address *</label>
+                        <label for="custAddress">Delivery / Location Address *</label>
                         <textarea id="custAddress" name="Address / Location" rows="2" placeholder="Enter full address or landmark" required></textarea>
                         <span class="error-msg" id="addressError">Please provide your location address.</span>
                     </div>
 
-                    <button type="submit" id="submitBtn" class="btn btn-request" style="width: 100%; margin-top: 10px;">Submit Request</button>
+                    <button type="submit" id="submitBtn" class="btn-request" style="width: 100%; margin-top: 10px; padding: 12px;">Submit Request</button>
                 </form>
             </div>
 
@@ -376,15 +424,10 @@
             <div class="success-box" id="successBox">
                 <h3>✅ Request Submitted!</h3>
                 <p style="margin-top: 10px;">Thank you! Your details have been emailed directly to <strong>S.Ali. Enterprise</strong>. We will call you shortly to confirm.</p>
-                <button class="btn btn-call" onclick="closeModal()" style="margin-top: 15px;">Close Window</button>
+                <button class="btn-request" onclick="closeModal()" style="margin-top: 15px; background-color: #0056b3;">Close Window</button>
             </div>
         </div>
     </div>
-
-    <footer id="contact">
-        <p>📍 Location: Matiswar Bazar, Purba Barddhaman | ✉️ Email: Isajidx19@gmail.com</p>
-        <p>&copy; 2026 S.Ali. Enterprise. All rights reserved.</p>
-    </footer>
 
     <!-- JS VALIDATION & ASYNC EMAIL SUBMISSION -->
     <script>
@@ -422,22 +465,23 @@
             if (type === 'lpg') {
                 tabLpg.classList.add('active');
                 tabScale.classList.remove('active');
-                serviceTypeInput.value = 'LPG Delivery';
-                optionLabel.textContent = 'Cylinder Type *';
+                serviceTypeInput.value = 'LPG Service';
+                optionLabel.textContent = 'Request Type *';
                 selectOption.innerHTML = `
                     <option value="14.2kg Domestic Cylinder">14.2 kg Domestic Cylinder</option>
+                    <option value="New Connection">New Connection</option>
                     <option value="19kg Commercial Cylinder">19 kg Commercial Cylinder</option>
                     <option value="5kg Compact Cylinder">5 kg Compact Cylinder</option>
                 `;
             } else {
                 tabScale.classList.add('active');
                 tabLpg.classList.remove('active');
-                serviceTypeInput.value = 'Weighing Scale Service';
-                optionLabel.textContent = 'Scale Service Needed *';
+                serviceTypeInput.value = 'Scale Service';
+                optionLabel.textContent = 'Scale Option Needed *';
                 selectOption.innerHTML = `
+                    <option value="Buy a New Scale">Buy a New Scale</option>
                     <option value="Scale Repair & Calibration">Scale Repair & Calibration</option>
-                    <option value="New Scale Purchase">Purchase New Electronic Scale</option>
-                    <option value="General Checkup">General Maintenance / Checkup</option>
+                    <option value="General Maintenance Checkup">General Maintenance Checkup</option>
                 `;
             }
         }
@@ -480,7 +524,7 @@
             }
         });
 
-        // Form Submit AJAX (Sends email instantly without leaving the page)
+        // Form Submit AJAX
         serviceForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
