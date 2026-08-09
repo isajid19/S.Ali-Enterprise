@@ -18,9 +18,9 @@
             background-color: #f9f9f9;
         }
         header {
-            background-color: #0056b3; /* Deep Blue theme */
+            background-color: #0056b3;
             color: white;
-            padding: 25px 0;
+            padding: 25px 15px;
             text-align: center;
         }
         header h1 {
@@ -38,17 +38,22 @@
             padding: 12px;
             border-bottom: 1px solid #ddd;
         }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
         nav a {
             color: #333;
             text-decoration: none;
-            margin: 0 15px;
             font-weight: bold;
         }
         nav a:hover {
-            color: #ff6600; /* Indane Orange hint */
+            color: #ff6600;
         }
 
-        /* Container & About Section */
+        /* Container & Layout */
         .container {
             max-width: 800px;
             margin: 30px auto;
@@ -57,6 +62,34 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.06);
             border-radius: 8px;
         }
+
+        /* Action Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 12px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .btn-call { background-color: #0056b3; }
+        .btn-whatsapp { background-color: #25D366; }
+        .btn-request { background-color: #ff6600; }
+
+        /* Typography & Content */
         h2 {
             color: #0056b3;
             border-bottom: 2px solid #ff6600;
@@ -78,23 +111,18 @@
             margin-bottom: 20px;
         }
 
-        /* Owner Card Section */
-        .owner-section {
-            background-color: #f0f7ff;
-            border-left: 4px solid #0056b3;
-            padding: 15px 20px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-        .owner-section strong {
-            color: #0056b3;
-        }
-
-        /* Service Cards with Images */
         .service-block {
             margin-top: 30px;
             padding-top: 15px;
             border-top: 1px solid #eee;
+        }
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
         }
         .service-images {
             display: flex;
@@ -103,25 +131,120 @@
             flex-wrap: wrap;
         }
         .service-images img {
-            width: 48%;
-            max-width: 220px;
+            flex: 1 1 200px;
             height: 160px;
             object-fit: cover;
             border-radius: 8px;
             border: 1px solid #ddd;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        
-        /* Lists */
-        ul {
-            margin-left: 20px;
-            margin-bottom: 20px;
-        }
-        li {
-            margin-bottom: 8px;
         }
 
-        /* Footer / Contact */
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+            padding: 15px;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-card {
+            background: #fff;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal-card {
+            transform: translateY(0);
+        }
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            color: #666;
+        }
+
+        /* Modal Service Tabs */
+        .tab-group {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0 20px 0;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #0056b3;
+            background: #f0f7ff;
+            color: #0056b3;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .tab-btn.active {
+            background: #0056b3;
+            color: #fff;
+        }
+
+        /* Form Controls */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .form-group input.valid { border-color: #28a745; }
+        .form-group input.invalid { border-color: #dc3545; }
+        
+        .error-msg {
+            color: #dc3545;
+            font-size: 0.8rem;
+            margin-top: 3px;
+            display: none;
+        }
+        .error-msg.visible {
+            display: block;
+        }
+
+        /* Success Message Box */
+        .success-box {
+            display: none;
+            text-align: center;
+            padding: 20px 10px;
+        }
+        .success-box h3 { color: #28a745; }
+
         footer {
             background-color: #222;
             color: white;
@@ -129,15 +252,6 @@
             padding: 25px 15px;
             margin-top: 40px;
             font-size: 0.95rem;
-        }
-        footer p {
-            margin-bottom: 5px;
-            font-size: 0.95rem;
-        }
-        .closing-note {
-            font-style: italic;
-            margin-top: 25px;
-            font-weight: bold;
         }
     </style>
 </head>
@@ -149,71 +263,225 @@
     </header>
 
     <nav>
-        <a href="#">Home</a>
-        <a href="#">About Us</a>
-        <a href="#contact">Contact</a>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </nav>
-    <!-- Contact Action Buttons -->
-<div style="display: flex; gap: 15px; justify-content: center; margin: 25px 0 10px 0; flex-wrap: wrap;">
-    <a href="tel:+910000000000" style="padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; color: white; background-color: #0056b3;">📞 Call Us Directly</a>
-    <a href="https://wa.me/917550961730" target="_blank" style="padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; color: white; background-color: #25D366;">💬 Chat on WhatsApp</a>
-</div>
 
     <div class="container">
+        <div class="cta-buttons">
+            <a href="tel:+917550961730" class="btn btn-call">📞 Call Us Directly</a>
+            <a href="https://wa.me/917550961730" target="_blank" class="btn btn-whatsapp">💬 Chat on WhatsApp</a>
+            <button class="btn btn-request" onclick="openModal('lpg')">📦 Book Service Online</button>
+        </div>
+
         <section class="about-us">
             <h2>About S.Ali. Enterprise</h2>
             <p class="tagline"><strong>Your Trusted Family Partner for Energy and Precision.</strong></p>
             
-            <p>
-                Welcome to <strong>S.Ali. Enterprise</strong>! We are a dedicated family-run enterprise committed to serving our local community with essential LPG services and high-precision commercial machinery sales and repair.
-            </p>
-            <!-- Indane Oil Service Section -->
+            <p>Welcome to <strong>S.Ali. Enterprise</strong>! We are dedicated to providing fast and reliable service for your household LPG and weighing scale requirements.</p>
+
+            <!-- Indane Oil Section -->
             <div class="service-block">
-                <h3>Indane Oil Sub-Dealer</h3>
-                <div class="service-images">
-                    <img src="indane oil.png" alt="Indane LPG Gas Cylinder Image 1">
-                    <img src="14 kg.png" alt="Indane LPG Gas Cylinder Image 2">
+                <div class="service-header">
+                    <h3>Indane Oil Sub-Dealer</h3>
+                    <button class="btn btn-request" onclick="openModal('lpg')">Order LPG Cylinder</button>
                 </div>
-                <p>
-                    As a recognized sub-dealer for <strong>Indane Oil</strong>, we support your daily energy needs by facilitating smooth, safe, and dependable LPG distribution. We ensure every connection and service adheres to strict safety protocols so you can fuel your household or commercial kitchen worry-free.
-                </p>
+                <div class="service-images">
+                    <img src="indane oil.png" alt="Indane LPG Cylinder">
+                    <img src="14 kg.png" alt="14kg Gas Cylinder">
+                </div>
+                <p>We facilitate safe and dependable LPG distribution. Order directly using our quick online request form.</p>
             </div>
 
-            <!-- Weighing Scale Service Section -->
+            <!-- Weighing Scale Section -->
             <div class="service-block">
-                <h3>Electronic Weighing Scale Sales & Repair</h3>
-                <div class="service-images">
-                    <img src="30kg.png" alt="Electronic Weighing Scale Image 1">
-                    <img src="100kg.png" alt="Electronic Weighing Scale Image 2">
+                <div class="service-header">
+                    <h3>Electronic Weighing Scale Sales & Repair</h3>
+                    <button class="btn btn-request" style="background-color: #0056b3;" onclick="openModal('scale')">Request Scale Repair</button>
                 </div>
-                <p>
-                    Beyond energy solutions, we are specialists in <strong>selling and repairing electronic weighing computer scales</strong>. Accurate measurements are essential for any successful commercial operation. Whether you need a new, highly accurate scale or fast repairs and technical calibration for existing equipment, our skilled team is here to keep your business running accurately and efficiently.
-                </p>
+                <div class="service-images">
+                    <img src="30kg.png" alt="30kg Scale">
+                    <img src="100kg.png" alt="100kg Scale">
+                </div>
+                <p>High-precision scales, expert repair, and calibration services for commercial clients.</p>
             </div>
-
-            <h3 style="margin-top: 30px;">Why Choose S.Ali. Enterprise?</h3>
-            <ul>
-                <li><strong>Family-Run Integrity:</strong> Personally managed with customer-first mindset.</li>
-                <li><strong>Dependable Sub-Dealer:</strong> Reliable access to official Indane LPG services.</li>
-                <li><strong>Expert Repair Services:</strong> Technical knowledge to service, repair, and maintain electronic scales.</li>
-                <li><strong>Complete Customer Satisfaction:</strong> Fast turnarounds, fair pricing, and clear communication.</li>
-            </ul>
-
-            <p class="closing-note">
-                Thank you for placing your trust in S.Ali. Enterprise. We look forward to serving you!
-            </p>
         </section>
     </div>
-    <!-- Google / Customer Rating Badge -->
-<div style="background-color: #fff8e7; border: 1px solid #ffe0b2; border-radius: 8px; padding: 12px 20px; text-align: center; margin: 20px 0; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;">
-    <span style="font-size: 1.4rem; color: #ff9800; font-weight: bold;">4.5 ★★★★</span>
-    <span style="font-size: 0.95rem; color: #555;">Rated by <strong>500+ Happy Customers</strong> </span>
-</div>
-     <footer id="contact">
-        <p><strong>Contact S.Ali. Enterprise Today!</strong></p>
-        <p>📍 Location: [Matiswar Bazar, Matiswar, Moinaguri, Purba Barddhaman, 713146 ] | ✉️ Email: [Isajidx19@gmail.com]</p>
-        <p style="color: #ff6600; font-weight: 500; margin-top: 5px;">🕒 Store Hours: Monday – Sunday (8:00 AM – 8:00 PM)</p>
-        <p style="margin-top: 10px; font-size: 0.8rem; color: #aaa;">&copy; 2026 S.Ali. Enterprise. Built with care .</p>
+
+    <!-- POPUP MODAL -->
+    <div class="modal-overlay" id="requestModal">
+        <div class="modal-card">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            
+            <div id="formContainer">
+                <h3 style="color: #0056b3; text-align: center;">Service Request Form</h3>
+                
+                <!-- Tab Controls -->
+                <div class="tab-group">
+                    <button class="tab-btn active" id="tabLpg" onclick="switchTab('lpg')">🔥 LPG Delivery</button>
+                    <button class="tab-btn" id="tabScale" onclick="switchTab('scale')">⚖️ Scale Repair</button>
+                </div>
+
+                <form id="serviceForm" novalidate>
+                    <input type="hidden" id="serviceType" value="lpg">
+
+                    <!-- Customer Name -->
+                    <div class="form-group">
+                        <label for="custName">Full Name *</label>
+                        <input type="text" id="custName" placeholder="Enter your full name" required>
+                        <span class="error-msg" id="nameError">Please enter a valid name (at least 2 letters).</span>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="form-group">
+                        <label for="custPhone">Phone Number *</label>
+                        <input type="tel" id="custPhone" placeholder="10-digit mobile number" required>
+                        <span class="error-msg" id="phoneError">Please enter a valid 10-digit Indian phone number.</span>
+                    </div>
+
+                    <!-- Dynamic Field: LPG Cylinder Type OR Scale Details -->
+                    <div class="form-group" id="dynamicOptionGroup">
+                        <label for="serviceOption" id="optionLabel">Cylinder Type *</label>
+                        <select id="serviceOption">
+                            <option value="14.2kg Domestic">14.2 kg Domestic Cylinder</option>
+                            <option value="19kg Commercial">19 kg Commercial Cylinder</option>
+                            <option value="5kg Compact">5 kg Compact Cylinder</option>
+                        </select>
+                    </div>
+
+                    <!-- Additional Details -->
+                    <div class="form-group">
+                        <label for="custAddress">Delivery / Workshop Address *</label>
+                        <textarea id="custAddress" rows="2" placeholder="Enter area address" required></textarea>
+                        <span class="error-msg" id="addressError">Please provide your address.</span>
+                    </div>
+
+                    <button type="submit" class="btn btn-request" style="width: 100%; margin-top: 10px;">Submit Request</button>
+                </form>
+            </div>
+
+            <!-- Confirmation Message -->
+            <div class="success-box" id="successBox">
+                <h3>✅ Request Submitted!</h3>
+                <p style="margin-top: 10px;">Thank you! Our team at S.Ali. Enterprise will call you shortly to confirm your request.</p>
+                <button class="btn btn-call" onclick="closeModal()" style="margin-top: 15px;">Close Window</button>
+            </div>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <p>📍 Location: Matiswar Bazar, Purba Barddhaman | ✉️ Email: Isajidx19@gmail.com</p>
+        <p>&copy; 2026 S.Ali. Enterprise. All rights reserved.</p>
     </footer>
+
+    <!-- LIVE INTERACTION & VALIDATION SCRIPT -->
+    <script>
+        const modal = document.getElementById('requestModal');
+        const serviceForm = document.getElementById('serviceForm');
+        const phoneInput = document.getElementById('custPhone');
+        const nameInput = document.getElementById('custName');
+        const addressInput = document.getElementById('custAddress');
+
+        // Modal Controls
+        function openModal(type) {
+            modal.classList.add('active');
+            switchTab(type);
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('formContainer').style.display = 'block';
+                document.getElementById('successBox').style.display = 'none';
+                serviceForm.reset();
+                clearValidationClasses();
+            }, 300);
+        }
+
+        // Switch between LPG and Scale Repair tab options
+        function switchTab(type) {
+            document.getElementById('serviceType').value = type;
+            const tabLpg = document.getElementById('tabLpg');
+            const tabScale = document.getElementById('tabScale');
+            const optionLabel = document.getElementById('optionLabel');
+            const selectOption = document.getElementById('serviceOption');
+
+            if (type === 'lpg') {
+                tabLpg.classList.add('active');
+                tabScale.classList.remove('active');
+                optionLabel.textContent = 'Cylinder Type *';
+                selectOption.innerHTML = `
+                    <option value="14.2kg Domestic">14.2 kg Domestic Cylinder</option>
+                    <option value="19kg Commercial">19 kg Commercial Cylinder</option>
+                    <option value="5kg Compact">5 kg Compact Cylinder</option>
+                `;
+            } else {
+                tabScale.classList.add('active');
+                tabLpg.classList.remove('active');
+                optionLabel.textContent = 'Scale Service Needed *';
+                selectOption.innerHTML = `
+                    <option value="Scale Repair">Scale Repair & Calibration</option>
+                    <option value="New Scale Purchase">Purchase New Electronic Scale</option>
+                    <option value="Annual Servicing">General Maintenance / Checkup</option>
+                `;
+            }
+        }
+
+        // Live Validation: Phone Input
+        phoneInput.addEventListener('input', () => {
+            const phoneRegex = /^[6-9]\d{9}$/;
+            if (phoneRegex.test(phoneInput.value.trim())) {
+                phoneInput.classList.add('valid');
+                phoneInput.classList.remove('invalid');
+                document.getElementById('phoneError').classList.remove('visible');
+            } else {
+                phoneInput.classList.add('invalid');
+                phoneInput.classList.remove('valid');
+                document.getElementById('phoneError').classList.add('visible');
+            }
+        });
+
+        // Live Validation: Name Input
+        nameInput.addEventListener('input', () => {
+            if (nameInput.value.trim().length >= 2) {
+                nameInput.classList.add('valid');
+                nameInput.classList.remove('invalid');
+                document.getElementById('nameError').classList.remove('visible');
+            } else {
+                nameInput.classList.add('invalid');
+                nameInput.classList.remove('valid');
+                document.getElementById('nameError').classList.add('visible');
+            }
+        });
+
+        // Form Submission Logic
+        serviceForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const isPhoneValid = /^[6-9]\d{9}$/.test(phoneInput.value.trim());
+            const isNameValid = nameInput.value.trim().length >= 2;
+            const isAddressValid = addressInput.value.trim().length > 3;
+
+            if (!isNameValid) document.getElementById('nameError').classList.add('visible');
+            if (!isPhoneValid) document.getElementById('phoneError').classList.add('visible');
+            if (!isAddressValid) document.getElementById('addressError').classList.add('visible');
+
+            if (isPhoneValid && isNameValid && isAddressValid) {
+                // Show Success Message State
+                document.getElementById('formContainer').style.display = 'none';
+                document.getElementById('successBox').style.display = 'block';
+            }
+        });
+
+        function clearValidationClasses() {
+            [nameInput, phoneInput, addressInput].forEach(input => {
+                input.classList.remove('valid', 'invalid');
+            });
+            document.querySelectorAll('.error-msg').forEach(msg => msg.classList.remove('visible'));
+        }
+    </script>
 </body>
 </html>
