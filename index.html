@@ -48,23 +48,6 @@
             color: #ff6600; /* Indane Orange hint */
         }
 
-        /* Banner / Top Images */
-        .top-banner {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        .top-banner img {
-            width: 48%;
-            max-width: 350px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-        }
-
         /* Container & About Section */
         .container {
             max-width: 800px;
@@ -82,7 +65,7 @@
         }
         h3 {
             color: #333;
-            margin-top: 25px;
+            margin-top: 10px;
             margin-bottom: 10px;
         }
         p {
@@ -108,23 +91,25 @@
         }
 
         /* Service Cards with Images */
-        .service-card {
+        .service-block {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        .service-images {
             display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 15px;
+            margin-bottom: 15px;
             flex-wrap: wrap;
         }
-        .service-card img {
-            width: 150px;
-            height: 150px;
+        .service-images img {
+            width: 48%;
+            max-width: 220px;
+            height: 160px;
             object-fit: cover;
             border-radius: 8px;
             border: 1px solid #ddd;
-        }
-        .service-text {
-            flex: 1;
-            min-width: 250px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
         
         /* Lists */
@@ -170,13 +155,7 @@
     </nav>
 
     <div class="container">
-        <!-- Top Featured Images Banner -->
-        <div class="top-banner">
-            <img src="http://googleusercontent.com/image_collection/image_retrieval/12237551076898459563_0" alt="Indane LPG Gas Cylinder">
-            <img src="http://googleusercontent.com/image_collection/image_retrieval/14963368284982449957_0" alt="Electronic Weighing Scale">
-        </div>
-
-        <section class="about-us" style="margin-top: 25px;">
+        <section class="about-us">
             <h2>About S.Ali. Enterprise</h2>
             <p class="tagline"><strong>Your Trusted Family Partner for Energy and Precision.</strong></p>
             
@@ -193,28 +172,30 @@
             </div>
 
             <!-- Indane Oil Service Section -->
-            <div class="service-card">
-                <img src="http://googleusercontent.com/image_collection/image_retrieval/12237551076898459563_0" alt="Indane LPG Gas Cylinder">
-                <div class="service-text">
-                    <h3>Indane Oil Sub-Dealer</h3>
-                    <p>
-                        As a recognized sub-dealer for <strong>Indane Oil</strong>, we support your daily energy needs by facilitating smooth, safe, and dependable LPG distribution. We ensure every connection and service adheres to strict safety protocols so you can fuel your household or commercial kitchen worry-free.
-                    </p>
+            <div class="service-block">
+                <h3>Indane Oil Sub-Dealer</h3>
+                <div class="service-images">
+                    <img src="lpg1.jpg" alt="Indane LPG Gas Cylinder Image 1">
+                    <img src="lpg2.jpg" alt="Indane LPG Gas Cylinder Image 2">
                 </div>
+                <p>
+                    As a recognized sub-dealer for <strong>Indane Oil</strong>, we support your daily energy needs by facilitating smooth, safe, and dependable LPG distribution. We ensure every connection and service adheres to strict safety protocols so you can fuel your household or commercial kitchen worry-free.
+                </p>
             </div>
 
             <!-- Weighing Scale Service Section -->
-            <div class="service-card">
-                <img src="http://googleusercontent.com/image_collection/image_retrieval/14963368284982449957_0" alt="Electronic Weighing Scale">
-                <div class="service-text">
-                    <h3>Electronic Weighing Scale Sales & Repair</h3>
-                    <p>
-                        Beyond energy solutions, we are specialists in <strong>selling and repairing electronic weighing computer scales</strong>. Accurate measurements are essential for any successful commercial operation. Whether you need a new, highly accurate scale or fast repairs and technical calibration for existing equipment, our skilled team is here to keep your business running accurately and efficiently.
-                    </p>
+            <div class="service-block">
+                <h3>Electronic Weighing Scale Sales & Repair</h3>
+                <div class="service-images">
+                    <img src="scale1.jpg" alt="Electronic Weighing Scale Image 1">
+                    <img src="scale2.jpg" alt="Electronic Weighing Scale Image 2">
                 </div>
+                <p>
+                    Beyond energy solutions, we are specialists in <strong>selling and repairing electronic weighing computer scales</strong>. Accurate measurements are essential for any successful commercial operation. Whether you need a new, highly accurate scale or fast repairs and technical calibration for existing equipment, our skilled team is here to keep your business running accurately and efficiently.
+                </p>
             </div>
 
-            <h3>Why Choose S.Ali. Enterprise?</h3>
+            <h3 style="margin-top: 30px;">Why Choose S.Ali. Enterprise?</h3>
             <ul>
                 <li><strong>Family-Run Integrity:</strong> Personally managed by Md Saisin & Md Sajid Sk with a customer-first mindset.</li>
                 <li><strong>Dependable Sub-Dealer:</strong> Reliable access to official Indane LPG services.</li>
