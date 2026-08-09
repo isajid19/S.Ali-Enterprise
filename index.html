@@ -17,43 +17,21 @@
             color: #333;
             background-color: #f9f9f9;
         }
-        <header>
-    <h1 class="typewriter-title"><span id="typewriter"></span><span class="cursor">|</span></h1>
-    <p>Trusted Indane Oil Sub-Dealer & Electronic Weighing Scale Experts</p>
-</header>
-
-<style>
-    /* Typewriter animation styling */
-    .typewriter-title {
-        font-size: 2.2rem;
-        margin-bottom: 5px;
-        letter-spacing: 1px;
-        color: #ffffff;
-    }
-    .cursor {
-        display: inline-block;
-        color: #ff6600; /* Indane Orange cursor */
-        animation: blink 0.7s infinite;
-    }
-    @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
-    }
-</style>
-
-<script>
-    /* Live Typing Script */
-    const text = "S.Ali. Enterprise";
-    let index = 0;
-    function typeEffect() {
-        if (index < text.length) {
-            document.getElementById("typewriter").textContent += text.charAt(index);
-            index++;
-            setTimeout(typeEffect, 120); // Speed of typing (in milliseconds)
+        header {
+            background-color: #0056b3; /* Deep Blue theme */
+            color: white;
+            padding: 25px 0;
+            text-align: center;
         }
-    }
-    window.addEventListener("DOMContentLoaded", typeEffect);
-</script>
+        header h1 {
+            margin-bottom: 5px;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+        }
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
         nav {
             background-color: #f1f1f1;
             text-align: center;
