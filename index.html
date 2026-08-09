@@ -32,20 +32,136 @@
             font-size: 1rem;
             opacity: 0.9;
         }
+
+        /* Navigation & Dropdown */
         nav {
             background-color: #f1f1f1;
-            text-align: center;
-            padding: 12px;
+            padding: 10px 20px;
             border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
         }
-        nav a {
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        /* Three-line hamburger icon */
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 22px;
+            height: 16px;
+            cursor: pointer;
+        }
+        .hamburger span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: #333;
+            border-radius: 2px;
+        }
+
+        /* Services Menu Container */
+        .services-menu-container {
+            position: relative;
+            display: inline-block;
+        }
+        .services-btn {
+            background: none;
+            border: none;
+            color: #333;
+            font-size: 1rem;
+            font-weight: bold;
+            font-family: inherit;
+            cursor: pointer;
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .services-btn:hover {
+            color: #ff6600;
+        }
+
+        /* Dropdown content */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            min-width: 180px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15);
+            border-radius: 6px;
+            z-index: 100;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            margin-top: 5px;
+        }
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: background-color 0.2s;
+        }
+        .dropdown-content a:hover {
+            background-color: #f0f7ff;
+            color: #0056b3;
+        }
+        .services-menu-container:hover .dropdown-content,
+        .services-menu-container.active .dropdown-content {
+            display: block;
+        }
+
+        /* Standard Nav Links */
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            margin-left: 20px;
+        }
+        .nav-links a {
             color: #333;
             text-decoration: none;
-            margin: 0 15px;
             font-weight: bold;
         }
-        nav a:hover {
-            color: #ff6600; /* Indane Orange hint */
+        .nav-links a:hover {
+            color: #ff6600;
+        }
+
+        /* Floating Sticky WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 55px;
+            height: 55px;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.2s ease-in-out;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        .whatsapp-float svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
         }
 
         /* Container & About Section */
@@ -119,7 +235,7 @@
             border: 1px solid #ddd;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
-        
+
         /* Lists */
         ul {
             margin-left: 20px;
@@ -234,7 +350,7 @@
         }
         .form-group input.valid, .form-group textarea.valid { border-color: #28a745; }
         .form-group input.invalid, .form-group textarea.invalid { border-color: #dc3545; }
-        
+
         .error-msg {
             color: #dc3545;
             font-size: 0.8rem;
@@ -280,18 +396,39 @@
         <p>Trusted Indane Oil Sub-Dealer & Electronic Weighing Scale Experts</p>
     </header>
 
+    <!-- Navigation Bar -->
     <nav>
-        <a href="#">Home</a>
-        <a href="#">About Us</a>
-        <a href="#contact">Contact</a>
+        <div class="nav-container">
+            <!-- Services Dropdown with Three Lines Icon -->
+            <div class="services-menu-container" id="servicesMenu">
+                <button class="services-btn" onclick="toggleMenu(event)">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    Services
+                </button>
+                <div class="dropdown-content">
+                    <a href="javascript:void(0)" onclick="openModal('lpg')">🔥 LPG Service</a>
+                    <a href="javascript:void(0)" onclick="openModal('scale')">⚖️ Scale Service</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#contact">Contact</a>
+        </div>
     </nav>
 
-    <!-- Contact Action Buttons -->
-    <div style="display: flex; gap: 15px; justify-content: center; margin: 25px 0 10px 0; flex-wrap: wrap;">
-        <a href="tel:+9108000 00000" style="padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; color: white; background-color: #0056b3;">📞 Call Us Directly</a>
-        <a href="https://wa.me/917550961730" target="_blank" style="padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; color: white; background-color: #25D366;">💬 Chat on WhatsApp</a>
-        <button class="btn-request" onclick="openModal('lpg')">📦 Request for LPG Service</button>
-    </div>
+    <!-- Floating Sticky WhatsApp Contact Button -->
+    <a href="https://wa.me/917550961730" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 32 32">
+            <path d="M16 2a13 13 0 0 0-11.3 19.4L3 29l7.8-1.6A13 13 0 1 0 16 2zm0 23.8a10.8 10.8 0 0 1-5.5-1.5l-.4-.2-4.1.8.9-3.9-.3-.4A10.8 10.8 0 1 1 16 25.8zm5.9-8.1c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a9.1 9.1 0 0 1-2.7-1.7 10 10 0 0 1-1.9-2.3c-.2-.3 0-.5.1-.7l.5-.6c.1-.2.2-.4.3-.5a.4.4 0 0 0 0-.4c0-.2-.7-1.7-1-2.3s-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4A3.7 3.7 0 0 0 9 11.8a6.4 6.4 0 0 0 1.3 3.4 14.7 14.7 0 0 0 5.6 5 18.2 18.2 0 0 0 1.9.7 4.6 4.6 0 0 0 2.1.1 3.4 3.4 0 0 0 2.2-1.6 2.8 2.8 0 0 0 .2-1.5c-.1-.1-.3-.2-.6-.4z"/>
+        </svg>
+    </a>
 
     <div class="container">
         <section class="about-us">
@@ -376,7 +513,7 @@
                 <!-- LIVE FORM WITH WEB3FORMS API INTEGRATION -->
                 <form id="serviceForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
                     
-                    <!-- Web3Forms Access Key (PASTE YOUR KEY IN THE VALUE FIELD BELOW) -->
+                    <!-- Web3Forms Access Key -->
                     <input type="hidden" name="access_key" value="80d39da3-e686-4662-9a45-29e72bfe354d">
                     <input type="hidden" name="subject" value="New Service Request from Website - S.Ali. Enterprise">
                     <input type="hidden" name="from_name" value="S.Ali. Enterprise Website">
@@ -438,9 +575,23 @@
         const addressInput = document.getElementById('custAddress');
         const submitBtn = document.getElementById('submitBtn');
 
+        function toggleMenu(event) {
+            event.stopPropagation();
+            const menu = document.getElementById('servicesMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Close dropdown when clicking anywhere else
+        document.addEventListener('click', function() {
+            const menu = document.getElementById('servicesMenu');
+            if (menu) menu.classList.remove('active');
+        });
+
         function openModal(type) {
             modal.classList.add('active');
             switchTab(type);
+            const menu = document.getElementById('servicesMenu');
+            if (menu) menu.classList.remove('active');
         }
 
         function closeModal() {
