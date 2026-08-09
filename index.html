@@ -199,6 +199,7 @@
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
+            type: button;
         }
         .tab-btn.active {
             background: #0056b3;
@@ -224,8 +225,8 @@
             outline: none;
             transition: border-color 0.2s;
         }
-        .form-group input.valid { border-color: #28a745; }
-        .form-group input.invalid { border-color: #dc3545; }
+        .form-group input.valid, .form-group textarea.valid { border-color: #28a745; }
+        .form-group input.invalid, .form-group textarea.invalid { border-color: #dc3545; }
         
         .error-msg {
             color: #dc3545;
@@ -321,52 +322,60 @@
                 
                 <!-- Tab Controls -->
                 <div class="tab-group">
-                    <button class="tab-btn active" id="tabLpg" onclick="switchTab('lpg')">🔥 LPG Delivery</button>
-                    <button class="tab-btn" id="tabScale" onclick="switchTab('scale')">⚖️ Scale Repair</button>
+                    <button type="button" class="tab-btn active" id="tabLpg" onclick="switchTab('lpg')">🔥 LPG Delivery</button>
+                    <button type="button" class="tab-btn" id="tabScale" onclick="switchTab('scale')">⚖️ Scale Repair</button>
                 </div>
 
-                <form id="serviceForm" novalidate>
-                    <input type="hidden" id="serviceType" value="lpg">
+                <!-- LIVE FORM WITH WEB3FORMS API INTEGRATION -->
+                <form id="serviceForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+                    
+                    <!-- Web3Forms Access Key (YOUR FREE KEY) -->
+                    <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE">
+                    <input type="hidden" name="subject" value="New Service Request from Website - S.Ali. Enterprise">
+                    <input type="hidden" name="from_name" value="S.Ali. Enterprise Website">
+
+                    <!-- Selected Category -->
+                    <input type="hidden" id="serviceType" name="Service Category" value="LPG Delivery">
 
                     <!-- Customer Name -->
                     <div class="form-group">
                         <label for="custName">Full Name *</label>
-                        <input type="text" id="custName" placeholder="Enter your full name" required>
+                        <input type="text" id="custName" name="Customer Name" placeholder="Enter your full name" required>
                         <span class="error-msg" id="nameError">Please enter a valid name (at least 2 letters).</span>
                     </div>
 
                     <!-- Phone Number -->
                     <div class="form-group">
                         <label for="custPhone">Phone Number *</label>
-                        <input type="tel" id="custPhone" placeholder="10-digit mobile number" required>
+                        <input type="tel" id="custPhone" name="Phone Number" placeholder="10-digit mobile number" required>
                         <span class="error-msg" id="phoneError">Please enter a valid 10-digit Indian phone number.</span>
                     </div>
 
-                    <!-- Dynamic Field: LPG Cylinder Type OR Scale Details -->
+                    <!-- Dynamic Field: LPG Type OR Scale Details -->
                     <div class="form-group" id="dynamicOptionGroup">
                         <label for="serviceOption" id="optionLabel">Cylinder Type *</label>
-                        <select id="serviceOption">
-                            <option value="14.2kg Domestic">14.2 kg Domestic Cylinder</option>
-                            <option value="19kg Commercial">19 kg Commercial Cylinder</option>
-                            <option value="5kg Compact">5 kg Compact Cylinder</option>
+                        <select id="serviceOption" name="Requested Option">
+                            <option value="14.2kg Domestic Cylinder">14.2 kg Domestic Cylinder</option>
+                            <option value="19kg Commercial Cylinder">19 kg Commercial Cylinder</option>
+                            <option value="5kg Compact Cylinder">5 kg Compact Cylinder</option>
                         </select>
                     </div>
 
-                    <!-- Additional Details -->
+                    <!-- Address -->
                     <div class="form-group">
                         <label for="custAddress">Delivery / Workshop Address *</label>
-                        <textarea id="custAddress" rows="2" placeholder="Enter area address" required></textarea>
-                        <span class="error-msg" id="addressError">Please provide your address.</span>
+                        <textarea id="custAddress" name="Address / Location" rows="2" placeholder="Enter full address or landmark" required></textarea>
+                        <span class="error-msg" id="addressError">Please provide your location address.</span>
                     </div>
 
-                    <button type="submit" class="btn btn-request" style="width: 100%; margin-top: 10px;">Submit Request</button>
+                    <button type="submit" id="submitBtn" class="btn btn-request" style="width: 100%; margin-top: 10px;">Submit Request</button>
                 </form>
             </div>
 
             <!-- Confirmation Message -->
             <div class="success-box" id="successBox">
                 <h3>✅ Request Submitted!</h3>
-                <p style="margin-top: 10px;">Thank you! Our team at S.Ali. Enterprise will call you shortly to confirm your request.</p>
+                <p style="margin-top: 10px;">Thank you! Your details have been emailed directly to <strong>S.Ali. Enterprise</strong>. We will call you shortly to confirm.</p>
                 <button class="btn btn-call" onclick="closeModal()" style="margin-top: 15px;">Close Window</button>
             </div>
         </div>
@@ -377,15 +386,15 @@
         <p>&copy; 2026 S.Ali. Enterprise. All rights reserved.</p>
     </footer>
 
-    <!-- LIVE INTERACTION & VALIDATION SCRIPT -->
+    <!-- JS VALIDATION & ASYNC EMAIL SUBMISSION -->
     <script>
         const modal = document.getElementById('requestModal');
         const serviceForm = document.getElementById('serviceForm');
         const phoneInput = document.getElementById('custPhone');
         const nameInput = document.getElementById('custName');
         const addressInput = document.getElementById('custAddress');
+        const submitBtn = document.getElementById('submitBtn');
 
-        // Modal Controls
         function openModal(type) {
             modal.classList.add('active');
             switchTab(type);
@@ -398,39 +407,42 @@
                 document.getElementById('successBox').style.display = 'none';
                 serviceForm.reset();
                 clearValidationClasses();
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Request';
             }, 300);
         }
 
-        // Switch between LPG and Scale Repair tab options
         function switchTab(type) {
-            document.getElementById('serviceType').value = type;
             const tabLpg = document.getElementById('tabLpg');
             const tabScale = document.getElementById('tabScale');
             const optionLabel = document.getElementById('optionLabel');
             const selectOption = document.getElementById('serviceOption');
+            const serviceTypeInput = document.getElementById('serviceType');
 
             if (type === 'lpg') {
                 tabLpg.classList.add('active');
                 tabScale.classList.remove('active');
+                serviceTypeInput.value = 'LPG Delivery';
                 optionLabel.textContent = 'Cylinder Type *';
                 selectOption.innerHTML = `
-                    <option value="14.2kg Domestic">14.2 kg Domestic Cylinder</option>
-                    <option value="19kg Commercial">19 kg Commercial Cylinder</option>
-                    <option value="5kg Compact">5 kg Compact Cylinder</option>
+                    <option value="14.2kg Domestic Cylinder">14.2 kg Domestic Cylinder</option>
+                    <option value="19kg Commercial Cylinder">19 kg Commercial Cylinder</option>
+                    <option value="5kg Compact Cylinder">5 kg Compact Cylinder</option>
                 `;
             } else {
                 tabScale.classList.add('active');
                 tabLpg.classList.remove('active');
+                serviceTypeInput.value = 'Weighing Scale Service';
                 optionLabel.textContent = 'Scale Service Needed *';
                 selectOption.innerHTML = `
-                    <option value="Scale Repair">Scale Repair & Calibration</option>
+                    <option value="Scale Repair & Calibration">Scale Repair & Calibration</option>
                     <option value="New Scale Purchase">Purchase New Electronic Scale</option>
-                    <option value="Annual Servicing">General Maintenance / Checkup</option>
+                    <option value="General Checkup">General Maintenance / Checkup</option>
                 `;
             }
         }
 
-        // Live Validation: Phone Input
+        // Live Validation Handlers
         phoneInput.addEventListener('input', () => {
             const phoneRegex = /^[6-9]\d{9}$/;
             if (phoneRegex.test(phoneInput.value.trim())) {
@@ -444,7 +456,6 @@
             }
         });
 
-        // Live Validation: Name Input
         nameInput.addEventListener('input', () => {
             if (nameInput.value.trim().length >= 2) {
                 nameInput.classList.add('valid');
@@ -457,22 +468,55 @@
             }
         });
 
-        // Form Submission Logic
-        serviceForm.addEventListener('submit', (e) => {
+        addressInput.addEventListener('input', () => {
+            if (addressInput.value.trim().length >= 3) {
+                addressInput.classList.add('valid');
+                addressInput.classList.remove('invalid');
+                document.getElementById('addressError').classList.remove('visible');
+            } else {
+                addressInput.classList.add('invalid');
+                addressInput.classList.remove('valid');
+                document.getElementById('addressError').classList.add('visible');
+            }
+        });
+
+        // Form Submit AJAX (Sends email instantly without leaving the page)
+        serviceForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
             const isPhoneValid = /^[6-9]\d{9}$/.test(phoneInput.value.trim());
             const isNameValid = nameInput.value.trim().length >= 2;
-            const isAddressValid = addressInput.value.trim().length > 3;
+            const isAddressValid = addressInput.value.trim().length >= 3;
 
             if (!isNameValid) document.getElementById('nameError').classList.add('visible');
             if (!isPhoneValid) document.getElementById('phoneError').classList.add('visible');
             if (!isAddressValid) document.getElementById('addressError').classList.add('visible');
 
             if (isPhoneValid && isNameValid && isAddressValid) {
-                // Show Success Message State
-                document.getElementById('formContainer').style.display = 'none';
-                document.getElementById('successBox').style.display = 'block';
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+
+                const formData = new FormData(serviceForm);
+
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(async (response) => {
+                    if (response.status === 200) {
+                        document.getElementById('formContainer').style.display = 'none';
+                        document.getElementById('successBox').style.display = 'block';
+                    } else {
+                        alert('Something went wrong submitting your form. Please try calling directly!');
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Submit Request';
+                    }
+                })
+                .catch(error => {
+                    alert('Network error. Please check your internet connection or call us directly.');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Request';
+                });
             }
         });
 
