@@ -48,6 +48,23 @@
             color: #ff6600; /* Indane Orange hint */
         }
 
+        /* Banner / Top Images */
+        .top-banner {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .top-banner img {
+            width: 48%;
+            max-width: 350px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
         /* Container & About Section */
         .container {
             max-width: 800px;
@@ -88,6 +105,26 @@
         }
         .owner-section strong {
             color: #0056b3;
+        }
+
+        /* Service Cards with Images */
+        .service-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .service-card img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .service-text {
+            flex: 1;
+            min-width: 250px;
         }
         
         /* Lists */
@@ -133,7 +170,13 @@
     </nav>
 
     <div class="container">
-        <section class="about-us">
+        <!-- Top Featured Images Banner -->
+        <div class="top-banner">
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/12237551076898459563_0" alt="Indane LPG Gas Cylinder">
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/14963368284982449957_0" alt="Electronic Weighing Scale">
+        </div>
+
+        <section class="about-us" style="margin-top: 25px;">
             <h2>About S.Ali. Enterprise</h2>
             <p class="tagline"><strong>Your Trusted Family Partner for Energy and Precision.</strong></p>
             
@@ -141,19 +184,39 @@
                 Welcome to <strong>S.Ali. Enterprise</strong>! We are a dedicated family-run enterprise committed to serving our local community with essential LPG services and high-precision commercial machinery sales and repair.
             </p>
 
-            <h3>Indane Oil Sub-Dealer</h3>
-            <p>
-                As a recognized sub-dealer for <strong>Indane Oil</strong>, we support your daily energy needs by facilitating smooth, safe, and dependable LPG distribution. We ensure every connection and service adheres to strict safety protocols so you can fuel your household or commercial kitchen worry-free.
-            </p>
+            <!-- Family Leadership Section -->
+            <div class="owner-section">
+                <p>
+                    <strong>Our Leadership:</strong><br>
+                    Founded and owned by <strong>Md Saisin</strong>, S.Ali. Enterprise has always stood for honesty, dependability, and hard work. Together with his son, <strong>Md Sajid Sk</strong>, our family works tirelessly to ensure every customer receives prompt, reliable service and expert technical solutions.
+                </p>
+            </div>
 
-            <h3>Electronic Weighing Scale Sales & Repair</h3>
-            <p>
-                Beyond energy solutions, we are specialists in <strong>selling and repairing electronic weighing computer scales</strong>. Accurate measurements are essential for any successful commercial operation. Whether you need a new, highly accurate scale or fast repairs and technical calibration for existing equipment, our skilled team is here to keep your business running accurately and efficiently.
-            </p>
+            <!-- Indane Oil Service Section -->
+            <div class="service-card">
+                <img src="http://googleusercontent.com/image_collection/image_retrieval/12237551076898459563_0" alt="Indane LPG Gas Cylinder">
+                <div class="service-text">
+                    <h3>Indane Oil Sub-Dealer</h3>
+                    <p>
+                        As a recognized sub-dealer for <strong>Indane Oil</strong>, we support your daily energy needs by facilitating smooth, safe, and dependable LPG distribution. We ensure every connection and service adheres to strict safety protocols so you can fuel your household or commercial kitchen worry-free.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Weighing Scale Service Section -->
+            <div class="service-card">
+                <img src="http://googleusercontent.com/image_collection/image_retrieval/14963368284982449957_0" alt="Electronic Weighing Scale">
+                <div class="service-text">
+                    <h3>Electronic Weighing Scale Sales & Repair</h3>
+                    <p>
+                        Beyond energy solutions, we are specialists in <strong>selling and repairing electronic weighing computer scales</strong>. Accurate measurements are essential for any successful commercial operation. Whether you need a new, highly accurate scale or fast repairs and technical calibration for existing equipment, our skilled team is here to keep your business running accurately and efficiently.
+                    </p>
+                </div>
+            </div>
 
             <h3>Why Choose S.Ali. Enterprise?</h3>
             <ul>
-                <li><strong>Family-Run Integrity:</strong> Personally managed with a customer-first mindset.</li>
+                <li><strong>Family-Run Integrity:</strong> Personally managed by Md Saisin & Md Sajid Sk with a customer-first mindset.</li>
                 <li><strong>Dependable Sub-Dealer:</strong> Reliable access to official Indane LPG services.</li>
                 <li><strong>Expert Repair Services:</strong> Technical knowledge to service, repair, and maintain electronic scales.</li>
                 <li><strong>Complete Customer Satisfaction:</strong> Fast turnarounds, fair pricing, and clear communication.</li>
@@ -167,9 +230,9 @@
 
     <footer id="contact">
         <p><strong>Contact S.Ali. Enterprise Today!</strong></p>
-        <p>📍 Location: [Matiswar Bazar, Matiswar, Moinaguri, Memari, Purba Barddhaman, 713146] | ✉️ Email: [Isajidx19@gmail.com]</p>
+        <p>📍 Location: [Your Address Here] | 📞 Phone: [Your Phone Number] | ✉️ Email: [Your Email]</p>
         <p style="margin-top: 10px; font-size: 0.8rem; color: #aaa;">&copy; 2026 S.Ali. Enterprise. All Rights Reserved.</p>
     </footer>
-ś
+
 </body>
 </html>
