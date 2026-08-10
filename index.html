@@ -154,7 +154,7 @@
             color: #ff6600;
         }
 
-        /* ANIMATION 3: Floating Sticky WhatsApp Button with Bounce */
+        /* Floating Sticky WhatsApp Button with Bounce */
         .whatsapp-float {
             position: fixed;
             width: 55px;
@@ -186,7 +186,7 @@
         }
 
         .whatsapp-float:hover {
-            animation: none; /* Pause bounce on hover for easy clicking */
+            animation: none;
             transform: scale(1.15);
             box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.4);
         }
@@ -259,7 +259,7 @@
             flex-wrap: wrap;
         }
 
-        /* ANIMATION 1: Image Hover Lift & Zoom */
+        /* Image Hover Lift & Zoom */
         .service-images img {
             width: 48%;
             max-width: 220px;
@@ -285,7 +285,7 @@
             margin-bottom: 8px;
         }
 
-        /* ANIMATION 2: Orange Action Button Pulse Glow (for LPG) */
+        /* Orange Action Button Pulse Glow (for LPG) */
         .btn-request {
             padding: 10px 18px;
             border-radius: 5px;
@@ -312,7 +312,7 @@
             }
         }
 
-        /* ANIMATION 2B: Blue Action Button Pulse Glow (for Scale Service) */
+        /* Blue Action Button Pulse Glow (for Scale Service) */
         .btn-request-blue {
             padding: 10px 18px;
             border-radius: 5px;
@@ -343,7 +343,85 @@
             transform: translateY(-2px);
         }
 
-        /* ANIMATION 4: Modal Overlay & Card Pop Animation */
+        /* FEATURE 1 STYLES: Price & Estimate Calculator */
+        .calc-container {
+            background-color: #f0f7ff;
+            border: 2px dashed #0056b3;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .calc-box {
+            display: flex;
+            flex-direction: column;
+        }
+        .calc-box label {
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            color: #0056b3;
+        }
+        .calc-box select {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 0.95rem;
+        }
+        .estimate-result-box {
+            background: #ffffff;
+            border-left: 4px solid #ff6600;
+            padding: 12px 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            text-align: center;
+        }
+        .estimate-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        /* FEATURE 4 STYLES: Google Maps Location Card */
+        .map-card {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .map-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .directions-btn {
+            background-color: #4285F4;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background-color 0.2s;
+        }
+        .directions-btn:hover {
+            background-color: #2b6cb0;
+        }
+
+        /* Modal Overlay & Card Pop Animation */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -453,7 +531,7 @@
         }
         .success-box h3 { color: #28a745; }
 
-        /* ANIMATION 5: Scroll Fade-In Effect */
+        /* Scroll Fade-In Effect */
         .fade-in-section {
             opacity: 0;
             transform: translateY(20px);
@@ -464,7 +542,7 @@
             transform: translateY(0);
         }
 
-        /* ANIMATION 6: Rating Star Glow */
+        /* Rating Star Glow */
         .star-rating {
             font-size: 1.4rem;
             color: #ff9800;
@@ -531,6 +609,8 @@
         <div class="nav-links">
             <a href="#">Home</a>
             <a href="#">About Us</a>
+            <a href="#calculator">Estimate</a>
+            <a href="#location">Find Us</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
@@ -583,6 +663,50 @@
                 </p>
             </div>
 
+            <!-- FEATURE 1: Quick Price & Service Estimator -->
+            <div class="calc-container" id="calculator">
+                <h3 style="color: #0056b3; margin-top: 0;">🧮 Instant Price & Service Estimator</h3>
+                <p style="font-size: 0.95rem; color: #555; margin-bottom: 10px;">Select your service details below to get an instant cost estimate:</p>
+                
+                <div class="calc-grid">
+                    <div class="calc-box">
+                        <label for="calcCategory">Select Category:</label>
+                        <select id="calcCategory" onchange="updateCalcOptions()">
+                            <option value="scale">⚖️ Scale Repair & Calibration</option>
+                            <option value="lpg">🔥 LPG Service / Connection</option>
+                        </select>
+                    </div>
+
+                    <div class="calc-box">
+                        <label for="calcSubOption" id="calcSubLabel">Scale Capacity:</label>
+                        <select id="calcSubOption" onchange="calculateEstimate()">
+                            <!-- Options updated via JS -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="estimate-result-box">
+                    <span style="font-size: 0.95rem; color: #666;">Estimated Cost:</span>
+                    <div class="estimate-price" id="estimateOutput">₹250 – ₹450</div>
+                    <span style="font-size: 0.8rem; color: #888;">*Final pricing confirmed upon physical inspection / official booking.</span>
+                </div>
+            </div>
+
+            <!-- FEATURE 4: Google Maps & Store Location Card -->
+            <div class="map-card" id="location">
+                <div class="map-header">
+                    <h3 style="margin: 0; color: #0056b3;">📍 Visit Our Store</h3>
+                    <a href="https://maps.google.com/?q=Matiswar+Bazar+Purba+Barddhaman" target="_blank" class="directions-btn">
+                        🧭 Get Directions on Google Maps
+                    </a>
+                </div>
+                <p style="margin-bottom: 10px;"><strong>S.Ali. Enterprise</strong> is conveniently located in Matiswar Bazar. You can drop off weighing scales for repair or inquire directly in person!</p>
+                <div style="background: #f0f7ff; padding: 10px 15px; border-radius: 6px; font-size: 0.95rem;">
+                    <strong>📍 Landmark Address:</strong> Matiswar Bazar, Matiswar, Moinaguri, Purba Barddhaman, West Bengal – 713146<br>
+                    <strong>🕒 Business Hours:</strong> Monday – Sunday (8:00 AM – 8:00 PM)
+                </div>
+            </div>
+
             <h3 style="margin-top: 30px;">Why Choose S.Ali. Enterprise?</h3>
             <ul>
                 <li><strong>Family-Run Integrity:</strong> Personally managed with customer-first mindset.</li>
@@ -597,7 +721,7 @@
         </section>
     </div>
 
-    <!-- Google / Customer Rating Badge with Glow Star -->
+    <!-- Customer Rating Badge with Glow Star -->
     <div style="background-color: #fff8e7; border: 1px solid #ffe0b2; border-radius: 8px; padding: 12px 20px; text-align: center; margin: 20px 0; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;">
         <span class="star-rating">4.5 ★★★★</span>
         <span style="font-size: 0.95rem; color: #555;">Rated by <strong>1000+ Happy Customers</strong> </span>
@@ -605,7 +729,7 @@
 
     <footer id="contact">
         <p><strong>Contact S.Ali. Enterprise Today!</strong></p>
-        <p>📍 Location: [Matiswar Bazar, Matiswar, Moinaguri, Purba Barddhaman, 713146] | ✉️ Email: [Isajidx19@gmail.com]</p>
+        <p>📍 Location: Matiswar Bazar, Matiswar, Moinaguri, Purba Barddhaman, 713146 | ✉️ Email: Isajidx19@gmail.com</p>
         <p style="color: #ff6600; font-weight: 500; margin-top: 5px;">🕒 Store Hours: Monday – Sunday (8:00 AM – 8:00 PM)</p>
         <p style="margin-top: 10px; font-size: 0.8rem; color: #aaa;">&copy; 2026 S.Ali. Enterprise. Built with care .</p>
     </footer>
@@ -680,7 +804,7 @@
         </div>
     </div>
 
-    <!-- JS VALIDATION & ASYNC EMAIL SUBMISSION -->
+    <!-- JS VALIDATION, ESTIMATOR & ASYNC EMAIL SUBMISSION -->
     <script>
         const modal = document.getElementById('requestModal');
         const serviceForm = document.getElementById('serviceForm');
@@ -751,6 +875,61 @@
                 `;
             }
         }
+
+        // FEATURE 1 JS: Price & Estimator Calculator Logic
+        function updateCalcOptions() {
+            const category = document.getElementById('calcCategory').value;
+            const subLabel = document.getElementById('calcSubLabel');
+            const subOption = document.getElementById('calcSubOption');
+
+            if (category === 'scale') {
+                subLabel.textContent = 'Scale Service Type:';
+                subOption.innerHTML = `
+                    <option value="tabletop">30 kg Tabletop Scale Repair</option>
+                    <option value="platform">100 kg Platform Scale Repair</option>
+                    <option value="heavy">200 kg Heavy-Duty Scale Repair</option>
+                    <option value="calibration">General Calibration & Maintenance</option>
+                `;
+            } else {
+                subLabel.textContent = 'LPG Connection / Refill:';
+                subOption.innerHTML = `
+                    <option value="domestic">14.2 kg Domestic Refill</option>
+                    <option value="commercial">19 kg Commercial Cylinder</option>
+                    <option value="compact">5 kg Compact Cylinder</option>
+                    <option value="new_conn">New LPG Connection Package</option>
+                `;
+            }
+            calculateEstimate();
+        }
+
+        function calculateEstimate() {
+            const category = document.getElementById('calcCategory').value;
+            const subOption = document.getElementById('calcSubOption').value;
+            const output = document.getElementById('estimateOutput');
+
+            let priceText = "Contact for Quote";
+
+            if (category === 'scale') {
+                switch(subOption) {
+                    case 'tabletop': priceText = "₹250 – ₹450"; break;
+                    case 'platform': priceText = "₹450 – ₹750"; break;
+                    case 'heavy': priceText = "₹650 – ₹1,200"; break;
+                    case 'calibration': priceText = "₹200 – ₹350"; break;
+                }
+            } else {
+                switch(subOption) {
+                    case 'domestic': priceText = "Official Govt. Rate"; break;
+                    case 'commercial': priceText = "Market Rate (Standard)"; break;
+                    case 'compact': priceText = "Standard Sub-Dealer Rate"; break;
+                    case 'new_conn': priceText = "As per Indane Govt Rules"; break;
+                }
+            }
+
+            output.textContent = priceText;
+        }
+
+        // Initialize Calculator Options on page load
+        updateCalcOptions();
 
         // Live Validation Handlers
         phoneInput.addEventListener('input', () => {
@@ -846,7 +1025,7 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.service-block').forEach(section => {
+        document.querySelectorAll('.service-block, .calc-container, .map-card').forEach(section => {
             section.classList.add('fade-in-section');
             observer.observe(section);
         });
