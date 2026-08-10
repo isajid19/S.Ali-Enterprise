@@ -5,23 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>S.Ali. Enterprise | Energy & Precision Solutions</title>
     <style>
-        /* Base Dark Cyber Theme Styles */
+        /* CSS VARIABLE DEFINITIONS FOR DUAL THEMES */
+        :root {
+            /* Default Dark Theme Variables */
+            --bg-color: #0b0f19;
+            --card-bg: #111827;
+            --header-bg: linear-gradient(180deg, #0f172a 0%, #0b0f19 100%);
+            --nav-bg: #111827;
+            --border-color: #1e293b;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --text-heading: #ffffff;
+            --accent-cyan: #00f0ff;
+            --accent-orange: #ff6600;
+            --btn-blue-bg: #00f0ff;
+            --btn-blue-text: #0b0f19;
+            --dropdown-bg: #1e293b;
+            --input-bg: #0b0f19;
+            --modal-overlay: rgba(3, 7, 18, 0.85);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Light Theme Overrides */
+        [data-theme="light"] {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --header-bg: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            --nav-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --text-heading: #0f172a;
+            --accent-cyan: #0284c7;
+            --accent-orange: #ea580c;
+            --btn-blue-bg: #0284c7;
+            --btn-blue-text: #ffffff;
+            --dropdown-bg: #ffffff;
+            --input-bg: #f1f5f9;
+            --modal-overlay: rgba(15, 23, 42, 0.6);
+            --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Base Styles */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #e2e8f0;
-            background-color: #0b0f19;
+            color: var(--text-main);
+            background-color: var(--bg-color);
         }
 
-        /* Header with Neon Shine */
+        /* Header */
         header {
-            background: linear-gradient(180deg, #0f172a 0%, #0b0f19 100%);
-            border-bottom: 1px solid #1e293b;
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--border-color);
             color: white;
             padding: 35px 20px 25px 20px;
             text-align: center;
@@ -48,25 +90,25 @@
 
         header p {
             font-size: 1.05rem;
-            color: #94a3b8;
+            color: #cbd5e1;
         }
 
         /* Nav Bar */
         nav {
-            background-color: #111827;
+            background-color: var(--nav-bg);
             padding: 12px 20px;
-            border-bottom: 1px solid #1e293b;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: space-between;
             position: sticky;
             top: 0;
             z-index: 900;
         }
-        .nav-container {
+        .nav-left {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
         .hamburger {
             display: flex;
@@ -80,7 +122,7 @@
             display: block;
             height: 2px;
             width: 100%;
-            background-color: #00f0ff;
+            background-color: var(--accent-cyan);
             border-radius: 2px;
         }
 
@@ -91,7 +133,7 @@
         .services-btn {
             background: none;
             border: none;
-            color: #f8fafc;
+            color: var(--text-heading);
             font-size: 1rem;
             font-weight: bold;
             font-family: inherit;
@@ -102,7 +144,7 @@
             gap: 8px;
         }
         .services-btn:hover {
-            color: #00f0ff;
+            color: var(--accent-cyan);
         }
 
         .dropdown-content {
@@ -110,27 +152,26 @@
             position: absolute;
             top: 100%;
             left: 0;
-            background-color: #1e293b;
+            background-color: var(--dropdown-bg);
             min-width: 200px;
-            box-shadow: 0px 8px 20px rgba(0,0,0,0.5);
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
             border-radius: 8px;
             z-index: 100;
             overflow: hidden;
-            border: 1px solid #334155;
+            border: 1px solid var(--border-color);
             margin-top: 8px;
         }
         .dropdown-content a {
-            color: #e2e8f0;
+            color: var(--text-main);
             padding: 12px 16px;
             text-decoration: none;
             display: block;
             font-weight: 500;
             font-size: 0.95rem;
-            transition: background-color 0.2s, color 0.2s;
         }
         .dropdown-content a:hover {
-            background-color: #0f172a;
-            color: #00f0ff;
+            background-color: var(--bg-color);
+            color: var(--accent-cyan);
         }
         .services-menu-container:hover .dropdown-content,
         .services-menu-container.active .dropdown-content {
@@ -140,17 +181,35 @@
         .nav-links {
             display: flex;
             gap: 20px;
-            margin-left: 25px;
         }
         .nav-links a {
-            color: #94a3b8;
+            color: var(--text-muted);
             text-decoration: none;
             font-weight: bold;
             font-size: 0.95rem;
-            transition: color 0.2s;
         }
         .nav-links a:hover {
-            color: #00f0ff;
+            color: var(--accent-cyan);
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-heading);
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .theme-toggle-btn:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
         }
 
         /* Floating WhatsApp Button */
@@ -171,14 +230,10 @@
             justify-content: center;
             text-decoration: none;
             animation: floatBounce 3s ease-in-out infinite;
-            transition: transform 0.2s ease-in-out;
         }
         @keyframes floatBounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-8px); }
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.15);
         }
         .whatsapp-float svg {
             width: 32px;
@@ -195,12 +250,12 @@
 
         /* Hero / About Card */
         .hero-card {
-            background: #111827;
-            border: 1px solid #1e293b;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 30px;
             margin-bottom: 35px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--card-shadow);
             position: relative;
             overflow: hidden;
         }
@@ -208,31 +263,31 @@
             content: '';
             position: absolute;
             top: 0; left: 0; width: 4px; height: 100%;
-            background: linear-gradient(180deg, #00f0ff 0%, #ff6600 100%);
+            background: linear-gradient(180deg, var(--accent-cyan) 0%, var(--accent-orange) 100%);
         }
         h2.section-title {
-            color: #f8fafc;
+            color: var(--text-heading);
             font-size: 1.8rem;
             margin-bottom: 10px;
         }
         .tagline {
             font-size: 1.1rem;
-            color: #00f0ff;
+            color: var(--accent-cyan);
             margin-bottom: 15px;
+            font-weight: 600;
         }
 
-        /* FEATURE C: SHOWCASE GRID */
+        /* SHOWCASE GRID */
         .showcase-header {
             text-align: center;
             margin: 40px 0 25px 0;
         }
         .showcase-header h2 {
             font-size: 1.8rem;
-            color: #ffffff;
-            letter-spacing: 0.5px;
+            color: var(--text-heading);
         }
         .showcase-header p {
-            color: #94a3b8;
+            color: var(--text-muted);
             font-size: 0.95rem;
         }
 
@@ -244,36 +299,35 @@
 
         /* Interactive Showcase Cards */
         .showcase-card {
-            background-color: #111827;
-            border: 1px solid #1e293b;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
             overflow: hidden;
-            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
             position: relative;
+            box-shadow: var(--card-shadow);
         }
         .showcase-card:hover {
             transform: translateY(-8px);
-            border-color: #00f0ff;
-            box-shadow: 0 12px 25px rgba(0, 240, 255, 0.15);
+            border-color: var(--accent-cyan);
         }
         .card-tag {
             position: absolute;
             top: 12px; right: 12px;
-            background: rgba(15, 23, 42, 0.85);
-            border: 1px solid #334155;
-            color: #00f0ff;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--accent-cyan);
             padding: 4px 10px;
             border-radius: 20px;
             font-size: 0.75rem;
             font-weight: bold;
-            backdrop-filter: blur(4px);
         }
         .card-img-wrapper {
             height: 180px;
             overflow: hidden;
-            background-color: #0b0f19;
+            background-color: var(--bg-color);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -294,12 +348,12 @@
             flex-grow: 1;
         }
         .card-content h3 {
-            color: #f8fafc;
+            color: var(--text-heading);
             font-size: 1.25rem;
             margin-bottom: 8px;
         }
         .card-content p {
-            color: #94a3b8;
+            color: var(--text-muted);
             font-size: 0.9rem;
             margin-bottom: 15px;
             flex-grow: 1;
@@ -309,7 +363,7 @@
             margin: 0 0 18px 0;
             padding: 0;
             font-size: 0.85rem;
-            color: #cbd5e1;
+            color: var(--text-main);
         }
         .card-specs li {
             margin-bottom: 5px;
@@ -318,12 +372,13 @@
             gap: 6px;
         }
         .card-specs li span {
-            color: #00f0ff;
+            color: var(--accent-cyan);
+            font-weight: bold;
         }
 
         /* Buttons */
         .btn-card-orange {
-            background-color: #ff6600;
+            background-color: var(--accent-orange);
             color: #ffffff;
             border: none;
             padding: 10px 15px;
@@ -332,17 +387,14 @@
             cursor: pointer;
             width: 100%;
             font-size: 0.95rem;
-            transition: background-color 0.2s, box-shadow 0.2s;
-            box-shadow: 0 0 10px rgba(255, 102, 0, 0.3);
         }
         .btn-card-orange:hover {
-            background-color: #e65c00;
-            box-shadow: 0 0 18px rgba(255, 102, 0, 0.6);
+            opacity: 0.9;
         }
 
         .btn-card-blue {
-            background-color: #00f0ff;
-            color: #0b0f19;
+            background-color: var(--btn-blue-bg);
+            color: var(--btn-blue-text);
             border: none;
             padding: 10px 15px;
             border-radius: 6px;
@@ -350,15 +402,12 @@
             cursor: pointer;
             width: 100%;
             font-size: 0.95rem;
-            transition: background-color 0.2s, box-shadow 0.2s;
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
         }
         .btn-card-blue:hover {
-            background-color: #00d8e6;
-            box-shadow: 0 0 18px rgba(0, 240, 255, 0.6);
+            opacity: 0.9;
         }
 
-        /* Why Choose Us Dark Cards */
+        /* Why Choose Us Cards */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -366,24 +415,25 @@
             margin-top: 25px;
         }
         .feature-item {
-            background: #111827;
-            border: 1px solid #1e293b;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             padding: 18px;
             border-radius: 8px;
+            box-shadow: var(--card-shadow);
         }
         .feature-item h4 {
-            color: #00f0ff;
+            color: var(--accent-cyan);
             margin-bottom: 6px;
         }
         .feature-item p {
             font-size: 0.85rem;
-            color: #94a3b8;
+            color: var(--text-muted);
         }
 
         /* Rating Badge */
         .rating-badge {
-            background-color: #111827;
-            border: 1px solid #334155;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 12px 20px;
             text-align: center;
@@ -393,19 +443,19 @@
             justify-content: center;
             gap: 12px;
             flex-wrap: wrap;
+            box-shadow: var(--card-shadow);
         }
         .star-rating {
             font-size: 1.3rem;
             color: #ffaa00;
             font-weight: bold;
-            text-shadow: 0 0 8px rgba(255, 170, 0, 0.5);
         }
 
         /* Footer */
         footer {
-            background-color: #070a10;
-            border-top: 1px solid #1e293b;
-            color: #94a3b8;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
             text-align: center;
             padding: 30px 15px;
             margin-top: 50px;
@@ -413,11 +463,11 @@
         }
         footer p { margin-bottom: 6px; }
 
-        /* MODAL (Dark Theme) */
+        /* MODAL */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(3, 7, 18, 0.85);
+            background: var(--modal-overlay);
             backdrop-filter: blur(5px);
             display: flex;
             justify-content: center;
@@ -433,13 +483,13 @@
             pointer-events: auto;
         }
         .modal-card {
-            background: #111827;
-            border: 1px solid #334155;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             width: 100%;
             max-width: 500px;
             border-radius: 12px;
             padding: 25px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             position: relative;
             transform: scale(0.85);
             opacity: 0;
@@ -456,9 +506,9 @@
             border: none;
             background: none;
             cursor: pointer;
-            color: #94a3b8;
+            color: var(--text-muted);
         }
-        .close-btn:hover { color: #ffffff; }
+        .close-btn:hover { color: var(--text-heading); }
 
         /* Modal Tabs */
         .tab-group {
@@ -469,18 +519,17 @@
         .tab-btn {
             flex: 1;
             padding: 10px;
-            border: 1px solid #334155;
-            background: #1e293b;
-            color: #94a3b8;
+            border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-muted);
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
-            transition: all 0.2s;
         }
         .tab-btn.active {
-            background: #00f0ff;
-            color: #0b0f19;
-            border-color: #00f0ff;
+            background: var(--accent-cyan);
+            color: #ffffff;
+            border-color: var(--accent-cyan);
         }
 
         /* Form Controls */
@@ -490,21 +539,20 @@
             font-weight: 600;
             margin-bottom: 5px;
             font-size: 0.85rem;
-            color: #cbd5e1;
+            color: var(--text-main);
         }
         .form-group input, .form-group select, .form-group textarea {
             width: 100%;
             padding: 10px;
-            border: 1px solid #334155;
-            background-color: #0b0f19;
-            color: #f8fafc;
+            border: 1px solid var(--border-color);
+            background-color: var(--input-bg);
+            color: var(--text-heading);
             border-radius: 6px;
             font-size: 0.95rem;
             outline: none;
-            transition: border-color 0.2s;
         }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            border-color: #00f0ff;
+            border-color: var(--accent-cyan);
         }
         .form-group input.valid, .form-group textarea.valid { border-color: #22c55e; }
         .form-group input.invalid, .form-group textarea.invalid { border-color: #ef4444; }
@@ -524,15 +572,9 @@
         }
         .success-box h3 { color: #22c55e; }
 
-        /* Animation Fade-In */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
+        /* Mobile View Adjustments */
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
         }
     </style>
 </head>
@@ -545,7 +587,7 @@
 
     <!-- Navigation Bar -->
     <nav>
-        <div class="nav-container">
+        <div class="nav-left">
             <div class="services-menu-container" id="servicesMenu">
                 <button class="services-btn" onclick="toggleMenu(event)">
                     <div class="hamburger">
@@ -560,14 +602,19 @@
                     <a href="javascript:void(0)" onclick="openModal('scale')">⚖️ Scale Service</a>
                 </div>
             </div>
+
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#showcase">Products</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact</a>
+            </div>
         </div>
 
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#showcase">Products</a>
-            <a href="#about">About Us</a>
-            <a href="#contact">Contact</a>
-        </div>
+        <!-- Theme Switcher Button -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">
+            <span id="themeIcon">🌙</span> <span id="themeText">Dark</span>
+        </button>
     </nav>
 
     <!-- Floating WhatsApp Contact Button -->
@@ -583,12 +630,12 @@
         <section class="hero-card" id="about">
             <h2 class="section-title">Precision Equipment & Trusted Energy</h2>
             <p class="tagline">Your local family-run partner in Matiswar Bazar</p>
-            <p style="color: #94a3b8;">
+            <p>
                 At <strong>S.Ali. Enterprise</strong>, we deliver essential domestic & commercial Indane LPG solutions alongside expert sales, technical repair, and precision calibration for electronic weighing scales.
             </p>
         </section>
 
-        <!-- FEATURE C: INTERACTIVE PRODUCT & SERVICE SHOWCASE CARDS -->
+        <!-- PRODUCT SHOWCASE CARDS -->
         <section id="showcase">
             <div class="showcase-header">
                 <h2>Explore Products & Services</h2>
@@ -618,7 +665,7 @@
                 <div class="showcase-card">
                     <span class="card-tag">LPG Safety Accessory</span>
                     <div class="card-img-wrapper">
-                        <img src="hospipe.png" alt="Suraksha LPG Hosepipe">
+                        <img src="hosepipe.png" alt="Suraksha LPG Hosepipe">
                     </div>
                     <div class="card-content">
                         <h3>Suraksha LPG Hosepipe</h3>
@@ -670,7 +717,7 @@
 
         <!-- Why Choose Us Grid -->
         <div style="margin-top: 50px;">
-            <h3 style="color: #ffffff; text-align: center; margin-bottom: 20px;">Why Trust S.Ali. Enterprise?</h3>
+            <h3 style="text-align: center; margin-bottom: 20px; color: var(--text-heading);">Why Trust S.Ali. Enterprise?</h3>
             <div class="features-grid">
                 <div class="feature-item">
                     <h4>Family-Run Integrity</h4>
@@ -690,7 +737,7 @@
         <!-- Rating Badge -->
         <div class="rating-badge">
             <span class="star-rating">★ 4.5 Stars</span>
-            <span style="color: #94a3b8; font-size: 0.95rem;">Trusted by <strong>1,000+ Happy Customers</strong> across Matiswar & surrounds</span>
+            <span style="color: var(--text-muted); font-size: 0.95rem;">Trusted by <strong>1,000+ Happy Customers</strong> across Matiswar & surrounds</span>
         </div>
 
     </div>
@@ -699,8 +746,8 @@
     <footer id="contact">
         <p><strong>S.Ali. Enterprise</strong></p>
         <p>📍 Matiswar Bazar, Matiswar, Moinaguri, Purba Barddhaman, 713146 | ✉️ Isajidx19@gmail.com</p>
-        <p style="color: #00f0ff; font-weight: bold; margin-top: 5px;">🕒 Store Hours: Monday – Sunday (8:00 AM – 8:00 PM)</p>
-        <p style="margin-top: 15px; font-size: 0.8rem; color: #64748b;">&copy; 2026 S.Ali. Enterprise. Built with care.</p>
+        <p style="color: var(--accent-cyan); font-weight: bold; margin-top: 5px;">🕒 Store Hours: Monday – Sunday (8:00 AM – 8:00 PM)</p>
+        <p style="margin-top: 15px; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 S.Ali. Enterprise. Built with care.</p>
     </footer>
 
     <!-- POPUP MODAL -->
@@ -709,7 +756,7 @@
             <button class="close-btn" onclick="closeModal()">&times;</button>
             
             <div id="formContainer">
-                <h3 style="color: #00f0ff; text-align: center; margin-bottom: 5px;">Service Request Form</h3>
+                <h3 style="color: var(--accent-cyan); text-align: center; margin-bottom: 5px;">Service Request Form</h3>
                 
                 <!-- Tab Controls -->
                 <div class="tab-group">
@@ -758,7 +805,7 @@
             <!-- Confirmation Message -->
             <div class="success-box" id="successBox">
                 <h3>✅ Request Submitted!</h3>
-                <p style="margin-top: 10px; color: #cbd5e1;">Your details have been sent directly to <strong>S.Ali. Enterprise</strong>. We will contact you shortly.</p>
+                <p style="margin-top: 10px; color: var(--text-main);">Your details have been sent directly to <strong>S.Ali. Enterprise</strong>. We will contact you shortly.</p>
                 <button class="btn-card-blue" onclick="closeModal()" style="margin-top: 15px;">Close Window</button>
             </div>
         </div>
@@ -766,6 +813,35 @@
 
     <!-- JS LOGIC -->
     <script>
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeIcon = document.getElementById('themeIcon');
+        const themeText = document.getElementById('themeText');
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Dark';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Load Saved Theme Preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeIcon.textContent = '☀️';
+            themeText.textContent = 'Light';
+        }
+
+        // Modal Logic
         const modal = document.getElementById('requestModal');
         const serviceForm = document.getElementById('serviceForm');
         const phoneInput = document.getElementById('custPhone');
@@ -791,7 +867,6 @@
             if (menu) menu.classList.remove('active');
         }
 
-        // Open Modal and pre-select a specific product from card click
         function openModalWithOption(type, optionValue) {
             openModal(type);
             const selectOption = document.getElementById('serviceOption');
@@ -844,7 +919,7 @@
             }
         }
 
-        // Validation
+        // Form Validation & Submission
         phoneInput.addEventListener('input', () => {
             const phoneRegex = /^[6-9]\d{9}$/;
             if (phoneRegex.test(phoneInput.value.trim())) {
@@ -882,7 +957,6 @@
             }
         });
 
-        // AJAX Form Submission
         serviceForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -928,20 +1002,6 @@
             });
             document.querySelectorAll('.error-msg').forEach(msg => msg.classList.remove('visible'));
         }
-
-        // Scroll Observer
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.hero-card, .showcase-card').forEach(section => {
-            section.classList.add('fade-in-section');
-            observer.observe(section);
-        });
     </script>
 </body>
 </html>
