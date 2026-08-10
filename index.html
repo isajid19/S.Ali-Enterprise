@@ -252,6 +252,39 @@
             padding: 15px;
         }
 
+        /* Back Navigation Bar */
+        .back-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .back-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--accent-cyan);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            border-color: var(--accent-cyan);
+            background: var(--bg-color);
+            transform: translateX(-3px);
+        }
+
         /* Hero / About Card */
         .hero-card {
             background: var(--card-bg);
@@ -299,7 +332,7 @@
         /* SHOWCASE GRID */
         .showcase-header {
             text-align: center;
-            margin: 20px 0 25px 0;
+            margin: 10px 0 25px 0;
         }
         .showcase-header h2 {
             font-size: 1.6rem;
@@ -718,6 +751,12 @@
 
     <!-- PAGE 2: LPG ENERGY DIVISION PAGE -->
     <div id="lpgPage" class="page-view hidden container">
+        <!-- Back Navigation Button -->
+        <div class="back-nav">
+            <button class="back-btn" onclick="switchPage('home')">← Back to Home / Change Division</button>
+            <button class="back-btn" style="color: var(--accent-orange);" onclick="switchPage('scale')">Go to Scale Division →</button>
+        </div>
+
         <div class="showcase-header">
             <h2>LPG Energy Division</h2>
             <p>Official Indane refill bookings, new gas connections, and certified safety accessories.</p>
@@ -762,6 +801,12 @@
 
     <!-- PAGE 3: SCALE PRECISION DIVISION PAGE -->
     <div id="scalePage" class="page-view hidden container">
+        <!-- Back Navigation Button -->
+        <div class="back-nav">
+            <button class="back-btn" onclick="switchPage('home')">← Back to Home / Change Division</button>
+            <button class="back-btn" style="color: var(--accent-orange);" onclick="switchPage('lpg')">Go to LPG Division →</button>
+        </div>
+
         <div class="showcase-header">
             <h2>Scale Precision Division</h2>
             <p>Digital tabletop scales, heavy platform machinery sales, technical repair, and calibration.</p>
