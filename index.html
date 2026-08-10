@@ -71,15 +71,15 @@
             background: var(--header-bg);
             border-bottom: 1px solid var(--border-color);
             color: white;
-            padding: 35px 20px 25px 20px;
+            padding: 25px 15px 20px 15px;
             text-align: center;
             position: relative;
         }
         
         header h1 {
-            margin-bottom: 8px;
-            font-size: 2.5rem;
-            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+            font-size: 2rem;
+            letter-spacing: 1px;
             display: inline-block;
             background: linear-gradient(90deg, #00f0ff, #ffffff, #ff6600, #00f0ff);
             background-size: 300% auto;
@@ -95,7 +95,7 @@
         }
 
         header p {
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             color: #cbd5e1;
         }
 
@@ -147,39 +147,60 @@
             padding: 5px 0;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         .services-btn:hover {
             color: var(--accent-cyan);
         }
 
+        /* Dropdown Content / Mobile Side Menu */
         .dropdown-content {
             display: none;
             position: absolute;
             top: 100%;
             left: 0;
             background-color: var(--dropdown-bg);
-            min-width: 200px;
-            box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
+            min-width: 240px;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.3);
             border-radius: 8px;
-            z-index: 100;
+            z-index: 1000;
             overflow: hidden;
             border: 1px solid var(--border-color);
             margin-top: 8px;
+            padding: 8px 0;
         }
         .dropdown-content a {
             color: var(--text-main);
-            padding: 12px 16px;
+            padding: 12px 20px;
             text-decoration: none;
             display: block;
             font-weight: 500;
             font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .dropdown-content a:last-child {
+            border-bottom: none;
         }
         .dropdown-content a:hover {
             background-color: var(--bg-color);
             color: var(--accent-cyan);
         }
-        .services-menu-container:hover .dropdown-content,
+
+        .menu-divider {
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 6px 0;
+        }
+
+        .menu-section-header {
+            padding: 8px 20px 4px 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+
         .services-menu-container.active .dropdown-content {
             display: block;
         }
@@ -251,8 +272,8 @@
         /* Main Container */
         .container {
             max-width: 1000px;
-            margin: 30px auto;
-            padding: 20px;
+            margin: 20px auto;
+            padding: 15px;
         }
 
         /* Hero / About Card */
@@ -260,8 +281,8 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 35px;
+            padding: 25px 20px;
+            margin-bottom: 30px;
             box-shadow: var(--card-shadow);
             position: relative;
             overflow: hidden;
@@ -274,33 +295,33 @@
         }
         h2.section-title {
             color: var(--text-heading);
-            font-size: 1.8rem;
-            margin-bottom: 10px;
+            font-size: 1.6rem;
+            margin-bottom: 8px;
         }
         .tagline {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--accent-cyan);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-weight: 600;
         }
 
         /* SHOWCASE GRID */
         .showcase-header {
             text-align: center;
-            margin: 40px 0 25px 0;
+            margin: 30px 0 20px 0;
         }
         .showcase-header h2 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--text-heading);
         }
         .showcase-header p {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .showcase-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 20px;
         }
 
@@ -316,7 +337,7 @@
             box-shadow: var(--card-shadow);
         }
         .showcase-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             border-color: var(--accent-cyan);
         }
         .card-tag {
@@ -345,7 +366,7 @@
             transition: transform 0.5s ease;
         }
         .showcase-card:hover .card-img-wrapper img {
-            transform: scale(1.08);
+            transform: scale(1.05);
         }
         .card-content {
             padding: 20px;
@@ -355,12 +376,12 @@
         }
         .card-content h3 {
             color: var(--text-heading);
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             margin-bottom: 8px;
         }
         .card-content p {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             margin-bottom: 15px;
             flex-grow: 1;
         }
@@ -439,7 +460,7 @@
             border-radius: 8px;
             padding: 12px 20px;
             text-align: center;
-            margin: 35px 0 20px 0;
+            margin: 30px 0 20px 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -448,7 +469,7 @@
             box-shadow: var(--card-shadow);
         }
         .star-rating {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: #ffaa00;
             font-weight: bold;
         }
@@ -458,28 +479,28 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 30px;
-            margin-top: 40px;
+            padding: 25px 20px;
+            margin-top: 35px;
             box-shadow: var(--card-shadow);
             text-align: center;
         }
         .contact-box h3 {
             color: var(--text-heading);
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
         }
 
         /* ADMIN FULL PAGE VIEW STYLING */
         .admin-page-container {
             max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
+            margin: 30px auto;
+            padding: 15px;
         }
         .admin-login-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 40px 30px;
+            padding: 30px 20px;
             box-shadow: var(--card-shadow);
             text-align: center;
             max-width: 420px;
@@ -488,19 +509,19 @@
         .admin-login-card h2 {
             color: var(--accent-orange);
             margin-bottom: 10px;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
         }
         .admin-login-card p {
             color: var(--text-muted);
             margin-bottom: 25px;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
         }
 
         .admin-dashboard {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 30px;
+            padding: 20px;
             box-shadow: var(--card-shadow);
         }
         .dashboard-header {
@@ -509,12 +530,14 @@
             align-items: center;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 15px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .admin-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
             margin-bottom: 20px;
         }
@@ -524,18 +547,18 @@
             text-align: left;
         }
         .admin-input-group label {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: bold;
             margin-bottom: 6px;
             color: var(--text-heading);
         }
         .admin-input-group input, .admin-input-group select {
-            padding: 12px;
+            padding: 10px;
             border-radius: 6px;
             border: 1px solid var(--border-color);
             background: var(--input-bg);
             color: var(--text-heading);
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
         .admin-table-container {
             overflow-x: auto;
@@ -545,10 +568,10 @@
             width: 100%;
             border-collapse: collapse;
             text-align: left;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
         }
         .admin-table th, .admin-table td {
-            padding: 12px;
+            padding: 10px;
             border: 1px solid var(--border-color);
         }
         .admin-table th {
@@ -571,9 +594,9 @@
             border-top: 1px solid var(--border-color);
             color: var(--text-muted);
             text-align: center;
-            padding: 30px 15px;
-            margin-top: 50px;
-            font-size: 0.9rem;
+            padding: 25px 15px;
+            margin-top: 40px;
+            font-size: 0.88rem;
         }
         footer p { margin-bottom: 6px; }
 
@@ -684,8 +707,11 @@
         }
         .success-box h3 { color: #22c55e; }
 
-        @media (max-width: 600px) {
-            .nav-links { display: none; }
+        /* Hide desktop links on smaller mobile screens */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -693,12 +719,13 @@
 
     <header>
         <h1>S.Ali. Enterprise</h1>
-        <p>Official Indane LPG Sub-Dealer & Electronic Scale Experts</p>
+        <p>Official Indane LPG Sub-Dealer &amp; Electronic Scale Experts</p>
     </header>
 
     <!-- Navigation Bar -->
     <nav>
         <div class="nav-left">
+            <!-- 3-Line Hamburger Dropdown Menu containing Services & Pages -->
             <div class="services-menu-container" id="servicesMenu">
                 <button class="services-btn" onclick="toggleMenu(event)">
                     <div class="hamburger">
@@ -706,15 +733,26 @@
                         <span></span>
                         <span></span>
                     </div>
-                    Services
+                    Menu
                 </button>
                 <div class="dropdown-content">
-                    <a href="javascript:void(0)" onclick="openModal('lpg')">🔥 LPG Service</a>
-                    <a href="javascript:void(0)" onclick="openModal('scale')">⚖️ Scale Service</a>
+                    <div class="menu-section-header">Navigation</div>
+                    <a href="javascript:void(0)" onclick="navClick('home')">🏠 Home</a>
+                    <a href="javascript:void(0)" onclick="navClick('showcase')">📦 Products</a>
+                    <a href="javascript:void(0)" onclick="navClick('about')">ℹ️ About Us</a>
+                    <a href="javascript:void(0)" onclick="navClick('contact')">📍 Contact</a>
+                    
+                    <div class="menu-divider"></div>
+                    <div class="menu-section-header">Services</div>
+                    <a href="javascript:void(0)" onclick="openModal('lpg')">🔥 LPG Service Form</a>
+                    <a href="javascript:void(0)" onclick="openModal('scale')">⚖️ Scale Service Form</a>
+                    
+                    <div class="menu-divider"></div>
+                    <a href="javascript:void(0)" onclick="navClickAdmin()" style="color: var(--accent-orange); font-weight: bold;">🔒 Admin Only</a>
                 </div>
             </div>
 
-            <!-- Rearranged Links: Contact before Admin Only -->
+            <!-- Desktop Links -->
             <div class="nav-links">
                 <a onclick="showMainPage('home')">Home</a>
                 <a onclick="showMainPage('showcase')">Products</a>
@@ -829,7 +867,7 @@
         </section>
 
         <!-- Why Choose Us Grid -->
-        <div style="margin-top: 50px;">
+        <div style="margin-top: 40px;">
             <h3 style="text-align: center; margin-bottom: 20px; color: var(--text-heading);">Why Trust S.Ali. Enterprise?</h3>
             <div class="features-grid">
                 <div class="feature-item">
@@ -850,10 +888,10 @@
         <!-- Rating Badge -->
         <div class="rating-badge">
             <span class="star-rating">★ 4.5 Stars</span>
-            <span style="color: var(--text-muted); font-size: 0.95rem;">Trusted by <strong>1,000+ Happy Customers</strong> across Matiswar, Moinaguri &amp; surrounds</span>
+            <span style="color: var(--text-muted); font-size: 0.9rem;">Trusted by <strong>1,000+ Happy Customers</strong> across Matiswar &amp; surrounds</span>
         </div>
 
-        <!-- CONTACT SECTION (PLACED BEFORE ADMIN ONLY) -->
+        <!-- CONTACT SECTION -->
         <section class="contact-box" id="contact">
             <h3>📍 Visit or Contact Us</h3>
             <p style="margin-bottom: 8px;"><strong>S.Ali. Enterprise</strong></p>
@@ -891,7 +929,7 @@
         <!-- LOGGED-IN ADMIN DASHBOARD VIEW -->
         <div id="adminDashboard" class="admin-dashboard" style="display: none;">
             <div class="dashboard-header">
-                <h2 style="color: var(--accent-orange); font-size: 1.6rem;">📋 Shop Management Dashboard</h2>
+                <h2 style="color: var(--accent-orange); font-size: 1.5rem;">📋 Shop Management Dashboard</h2>
                 <div>
                     <button class="btn-card-blue" style="padding: 6px 14px; width: auto; font-size: 0.85rem;" onclick="showMainPage('home')">Website</button>
                     <button class="btn-delete" style="padding: 6px 14px; width: auto; font-size: 0.85rem;" onclick="logoutAdmin()">Logout</button>
@@ -927,7 +965,7 @@
                 <button type="submit" class="btn-card-orange" style="padding: 12px; font-size: 1rem;">➕ Save Customer Record</button>
             </form>
 
-            <div style="margin-top: 35px;">
+            <div style="margin-top: 30px;">
                 <h3 style="color: var(--text-heading); margin-bottom: 10px;">Saved Customer Records</h3>
                 <div class="admin-table-container">
                     <table class="admin-table">
@@ -1017,6 +1055,33 @@
 
     <!-- JS LOGIC -->
     <script>
+        // Toggle Dropdown Menu
+        function toggleMenu(event) {
+            event.stopPropagation();
+            const menu = document.getElementById('servicesMenu');
+            menu.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const menu = document.getElementById('servicesMenu');
+            if (menu) menu.classList.remove('active');
+        }
+
+        document.addEventListener('click', function() {
+            closeMenu();
+        });
+
+        // Navigation Clicks from Mobile Menu
+        function navClick(sectionId) {
+            closeMenu();
+            showMainPage(sectionId);
+        }
+
+        function navClickAdmin() {
+            closeMenu();
+            showAdminPage();
+        }
+
         // Page Navigation Control
         function showMainPage(sectionId) {
             document.getElementById('mainPageView').classList.remove('hidden');
@@ -1070,22 +1135,10 @@
         const addressInput = document.getElementById('custAddress');
         const submitBtn = document.getElementById('submitBtn');
 
-        function toggleMenu(event) {
-            event.stopPropagation();
-            const menu = document.getElementById('servicesMenu');
-            menu.classList.toggle('active');
-        }
-
-        document.addEventListener('click', function() {
-            const menu = document.getElementById('servicesMenu');
-            if (menu) menu.classList.remove('active');
-        });
-
         function openModal(type) {
+            closeMenu();
             modal.classList.add('active');
             switchTab(type);
-            const menu = document.getElementById('servicesMenu');
-            if (menu) menu.classList.remove('active');
         }
 
         function openModalWithOption(type, optionValue) {
