@@ -97,6 +97,7 @@
         header p {
             font-size: 0.95rem;
             color: #cbd5e1;
+            min-height: 1.5em; /* Prevents height jumping while typing */
         }
 
         /* Nav Bar */
@@ -303,6 +304,21 @@
             color: var(--accent-cyan);
             margin-bottom: 12px;
             font-weight: 600;
+        }
+
+        /* TYPEWRITER CURSOR STYLE */
+        .typewriter-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.1em;
+            background-color: var(--accent-cyan);
+            margin-left: 2px;
+            vertical-align: text-bottom;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         /* SHOWCASE GRID */
@@ -719,7 +735,7 @@
 
     <header>
         <h1>S.Ali. Enterprise</h1>
-        <p>Official Indane LPG Sub-Dealer &amp; Electronic Scale Experts</p>
+        <p><span id="header-typewriter"></span><span class="typewriter-cursor"></span></p>
     </header>
 
     <!-- Navigation Bar -->
@@ -782,7 +798,7 @@
             <h2 class="section-title">Precision Equipment &amp; Trusted Energy</h2>
             <p class="tagline">Your local family-run partner in Matiswar Bazar</p>
             <p>
-                At <strong>S.Ali. Enterprise</strong>, we deliver essential domestic &amp; commercial Indane LPG solutions alongside expert sales, technical repair, and precision calibration for electronic weighing scales.
+                <span id="hero-typewriter"></span><span class="typewriter-cursor"></span>
             </p>
         </section>
 
@@ -1055,6 +1071,41 @@
 
     <!-- JS LOGIC -->
     <script>
+        // TYPEWRITER ANIMATION SCRIPT (WITH REPEAT LOOP EVERY 5 SECONDS)
+        const headerText = "Official Indane LPG Sub-Dealer & Electronic Scale Experts";
+        const heroText = "At S.Ali. Enterprise, we deliver essential domestic & commercial Indane LPG solutions alongside expert sales, technical repair, and precision calibration for electronic weighing scales.";
+        
+        let index = 0;
+        const typingSpeed = 30; // Speed in milliseconds per character
+        const delayBeforeRestart = 5000; // 5-second delay before looping again
+
+        function typeWriterLoop() {
+            const headerEl = document.getElementById("header-typewriter");
+            const heroEl = document.getElementById("hero-typewriter");
+
+            if (index < Math.max(headerText.length, heroText.length)) {
+                if (index < headerText.length) {
+                    headerEl.innerHTML += headerText.charAt(index);
+                }
+                if (index < heroText.length) {
+                    heroEl.innerHTML += heroText.charAt(index);
+                }
+                index++;
+                setTimeout(typeWriterLoop, typingSpeed);
+            } else {
+                // Wait 5 seconds after completing, then reset and start over
+                setTimeout(() => {
+                    index = 0;
+                    headerEl.innerHTML = "";
+                    heroEl.innerHTML = "";
+                    typeWriterLoop();
+                }, delayBeforeRestart);
+            }
+        }
+
+        // Run typewriter on load
+        window.addEventListener('DOMContentLoaded', typeWriterLoop);
+
         // Toggle Dropdown Menu
         function toggleMenu(event) {
             event.stopPropagation();
