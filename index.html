@@ -285,7 +285,7 @@
             margin-bottom: 8px;
         }
 
-        /* ANIMATION 2: Action Buttons Pulse Glow */
+        /* ANIMATION 2: Orange Action Button Pulse Glow (for LPG) */
         .btn-request {
             padding: 10px 18px;
             border-radius: 5px;
@@ -297,10 +297,10 @@
             cursor: pointer;
             font-size: 0.95rem;
             transition: transform 0.2s, background-color 0.2s;
-            animation: pulseGlow 2.5s infinite;
+            animation: pulseGlowOrange 2.5s infinite;
         }
 
-        @keyframes pulseGlow {
+        @keyframes pulseGlowOrange {
             0% {
                 box-shadow: 0 0 0 0 rgba(255, 102, 0, 0.5);
             }
@@ -312,7 +312,34 @@
             }
         }
 
-        .btn-request:hover {
+        /* ANIMATION 2B: Blue Action Button Pulse Glow (for Scale Service) */
+        .btn-request-blue {
+            padding: 10px 18px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+            background-color: #0056b3;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: transform 0.2s, background-color 0.2s;
+            animation: pulseGlowBlue 2.5s infinite;
+        }
+
+        @keyframes pulseGlowBlue {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 86, 179, 0.5);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 86, 179, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 86, 179, 0);
+            }
+        }
+
+        .btn-request:hover, .btn-request-blue:hover {
             transform: translateY(-2px);
         }
 
@@ -544,7 +571,7 @@
             <div class="service-block">
                 <div class="service-header">
                     <h3>Electronic Weighing Scale Sales & Repair</h3>
-                    <button class="btn-request" style="background-color: #0056b3;" onclick="openModal('scale')">Scale Service</button>
+                    <button class="btn-request-blue" onclick="openModal('scale')">Scale Service</button>
                 </div>
                 <div class="service-images">
                     <img src="30kg.png" alt="Electronic Weighing Scale Image 1">
