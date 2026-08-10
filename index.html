@@ -468,9 +468,9 @@
             flex-wrap: wrap;
             box-shadow: var(--card-shadow);
         }
-        .rating-score {
-            font-size: 1.1rem;
-            color: var(--accent-cyan);
+        .star-rating {
+            font-size: 1.2rem;
+            color: #ffaa00;
             font-weight: bold;
         }
 
@@ -737,18 +737,18 @@
                 </button>
                 <div class="dropdown-content">
                     <div class="menu-section-header">Navigation</div>
-                    <a href="javascript:void(0)" onclick="navClick('home')">Home</a>
-                    <a href="javascript:void(0)" onclick="navClick('showcase')">Products</a>
-                    <a href="javascript:void(0)" onclick="navClick('about')">About Us</a>
-                    <a href="javascript:void(0)" onclick="navClick('contact')">Contact</a>
+                    <a href="javascript:void(0)" onclick="navClick('home')">🏠 Home</a>
+                    <a href="javascript:void(0)" onclick="navClick('showcase')">📦 Products</a>
+                    <a href="javascript:void(0)" onclick="navClick('about')">ℹ️ About Us</a>
+                    <a href="javascript:void(0)" onclick="navClick('contact')">📍 Contact</a>
                     
                     <div class="menu-divider"></div>
                     <div class="menu-section-header">Services</div>
-                    <a href="javascript:void(0)" onclick="openModal('lpg')">LPG Service Form</a>
-                    <a href="javascript:void(0)" onclick="openModal('scale')">Scale Service Form</a>
+                    <a href="javascript:void(0)" onclick="openModal('lpg')">🔥 LPG Service Form</a>
+                    <a href="javascript:void(0)" onclick="openModal('scale')">⚖️ Scale Service Form</a>
                     
                     <div class="menu-divider"></div>
-                    <a href="javascript:void(0)" onclick="navClickAdmin()" style="color: var(--accent-orange); font-weight: bold;">Admin Only</a>
+                    <a href="javascript:void(0)" onclick="navClickAdmin()" style="color: var(--accent-orange); font-weight: bold;">🔒 Admin Only</a>
                 </div>
             </div>
 
@@ -763,7 +763,7 @@
         </div>
 
         <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">
-            <span id="themeText">Dark Theme</span>
+            <span id="themeIcon">🌙</span> <span id="themeText">Dark</span>
         </button>
     </nav>
 
@@ -805,8 +805,8 @@
                         <h3>14.2 kg Domestic Cylinder</h3>
                         <p>Standard household LPG fuel connection with strict official safety protocols.</p>
                         <ul class="card-specs">
-                            <li><span>-</span> Fast Sub-Dealer Booking</li>
-                            <li><span>-</span> Verified Safety Checks</li>
+                            <li><span>✓</span> Fast Sub-Dealer Booking</li>
+                            <li><span>✓</span> Verified Safety Checks</li>
                         </ul>
                         <button class="btn-card-orange" onclick="openModalWithOption('lpg', '14.2kg Domestic Cylinder')">Book Now</button>
                     </div>
@@ -822,8 +822,8 @@
                         <h3>Suraksha LPG Hosepipe</h3>
                         <p>High-grade, steel-reinforced safety rubber hosepipe for certified leak-proof connection.</p>
                         <ul class="card-specs">
-                            <li><span>-</span> Fire &amp; Rat Resistant</li>
-                            <li><span>-</span> ISI Certified Safety Standard</li>
+                            <li><span>✓</span> Fire &amp; Rat Resistant</li>
+                            <li><span>✓</span> ISI Certified Safety Standard</li>
                         </ul>
                         <button class="btn-card-orange" onclick="openModalWithOption('lpg', 'Suraksha Hosepipe Replacement')">Order Now</button>
                     </div>
@@ -839,8 +839,8 @@
                         <h3>30 kg Tabletop Digital Scale</h3>
                         <p>Compact, high-precision electronic scale ideal for retail shops and grocery markets.</p>
                         <ul class="card-specs">
-                            <li><span>-</span> Dual Display &amp; Battery Back-up</li>
-                            <li><span>-</span> Repair &amp; Calibration Service</li>
+                            <li><span>✓</span> Dual Display &amp; Battery Back-up</li>
+                            <li><span>✓</span> Repair &amp; Calibration Service</li>
                         </ul>
                         <button class="btn-card-blue" onclick="openModalWithOption('scale', 'Buy a New Scale')">Request Scale Service</button>
                     </div>
@@ -856,8 +856,8 @@
                         <h3>100kg – 300kg Platform Scale</h3>
                         <p>Heavy-duty steel platform scales for commercial loads, agricultural, and wholesale trade.</p>
                         <ul class="card-specs">
-                            <li><span>-</span> Heavy-Load Capacity (Up to 300kg)</li>
-                            <li><span>-</span> On-Site / Shop Repair</li>
+                            <li><span>✓</span> Heavy-Load Capacity (Up to 300kg)</li>
+                            <li><span>✓</span> On-Site / Shop Repair</li>
                         </ul>
                         <button class="btn-card-blue" onclick="openModalWithOption('scale', 'Scale Repair &amp; Calibration')">Request Scale Service</button>
                     </div>
@@ -887,17 +887,17 @@
 
         <!-- Rating Badge -->
         <div class="rating-badge">
-            <span class="rating-score">4.5 / 5 Rating</span>
+            <span class="star-rating">★ 4.5 Stars</span>
             <span style="color: var(--text-muted); font-size: 0.9rem;">Trusted by <strong>1,000+ Happy Customers</strong> across Matiswar &amp; surrounds</span>
         </div>
 
         <!-- CONTACT SECTION -->
         <section class="contact-box" id="contact">
-            <h3>Visit or Contact Us</h3>
+            <h3>📍 Visit or Contact Us</h3>
             <p style="margin-bottom: 8px;"><strong>S.Ali. Enterprise</strong></p>
             <p style="color: var(--text-muted);">Matiswar Bazar, Matiswar, Moinaguri, Purba Barddhaman, 713146</p>
-            <p style="color: var(--text-muted); margin-top: 5px;">Email: <strong>isajidx19@gmail.com</strong></p>
-            <p style="color: var(--accent-cyan); font-weight: bold; margin-top: 10px;">Store Hours: Monday – Sunday (8:00 AM – 8:00 PM)</p>
+            <p style="color: var(--text-muted); margin-top: 5px;">✉️ Email: <strong>isajidx19@gmail.com</strong></p>
+            <p style="color: var(--accent-cyan); font-weight: bold; margin-top: 10px;">🕒 Store Hours: Monday – Sunday (8:00 AM – 8:00 PM)</p>
         </section>
 
     </div>
@@ -907,7 +907,7 @@
         
         <!-- ADMIN LOGIN SCREEN VIEW -->
         <div id="adminLoginCard" class="admin-login-card">
-            <h2>Admin Portal Login</h2>
+            <h2>🔒 Admin Portal Login</h2>
             <p>Authorized access only. Please sign in to manage shop records.</p>
             
             <form onsubmit="handleAdminLogin(event)">
@@ -922,14 +922,14 @@
                 </div>
                 
                 <button type="submit" class="btn-card-orange" style="width: 100%; margin-top: 10px; padding: 12px;">Login to Portal</button>
-                <button type="button" class="btn-card-blue" style="width: 100%; margin-top: 10px; padding: 10px; background: transparent; border: 1px solid var(--border-color); color: var(--text-main);" onclick="showMainPage('home')">Back to Main Website</button>
+                <button type="button" class="btn-card-blue" style="width: 100%; margin-top: 10px; padding: 10px; background: transparent; border: 1px solid var(--border-color); color: var(--text-main);" onclick="showMainPage('home')">← Back to Main Website</button>
             </form>
         </div>
 
         <!-- LOGGED-IN ADMIN DASHBOARD VIEW -->
         <div id="adminDashboard" class="admin-dashboard" style="display: none;">
             <div class="dashboard-header">
-                <h2 style="color: var(--accent-orange); font-size: 1.5rem;">Shop Management Dashboard</h2>
+                <h2 style="color: var(--accent-orange); font-size: 1.5rem;">📋 Shop Management Dashboard</h2>
                 <div>
                     <button class="btn-card-blue" style="padding: 6px 14px; width: auto; font-size: 0.85rem;" onclick="showMainPage('home')">Website</button>
                     <button class="btn-delete" style="padding: 6px 14px; width: auto; font-size: 0.85rem;" onclick="logoutAdmin()">Logout</button>
@@ -962,7 +962,7 @@
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="btn-card-orange" style="padding: 12px; font-size: 1rem;">Save Customer Record</button>
+                <button type="submit" class="btn-card-orange" style="padding: 12px; font-size: 1rem;">➕ Save Customer Record</button>
             </form>
 
             <div style="margin-top: 30px;">
@@ -992,7 +992,7 @@
     <!-- Footer -->
     <footer>
         <p><strong>S.Ali. Enterprise</strong></p>
-        <p>Matiswar Bazar, Matiswar, Moinaguri, Purba Barddhaman, 713146 | Email: isajidx19@gmail.com</p>
+        <p>📍 Matiswar Bazar, Matiswar, Moinaguri, Purba Barddhaman, 713146 | ✉️ isajidx19@gmail.com</p>
         <p style="margin-top: 15px; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 S.Ali. Enterprise. Built with care.</p>
     </footer>
 
@@ -1005,8 +1005,8 @@
                 <h3 style="color: var(--accent-cyan); text-align: center; margin-bottom: 5px;">Service Request Form</h3>
                 
                 <div class="tab-group">
-                    <button type="button" class="tab-btn active" id="tabLpg" onclick="switchTab('lpg')">LPG Service</button>
-                    <button type="button" class="tab-btn" id="tabScale" onclick="switchTab('scale')">Scale Service</button>
+                    <button type="button" class="tab-btn active" id="tabLpg" onclick="switchTab('lpg')">🔥 LPG Service</button>
+                    <button type="button" class="tab-btn" id="tabScale" onclick="switchTab('scale')">⚖️ Scale Service</button>
                 </div>
 
                 <form id="serviceForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
@@ -1046,7 +1046,7 @@
             </div>
 
             <div class="success-box" id="successBox">
-                <h3>Request Submitted</h3>
+                <h3>✅ Request Submitted!</h3>
                 <p style="margin-top: 10px; color: var(--text-main);">Your details have been sent directly to <strong>S.Ali. Enterprise</strong>. We will contact you shortly.</p>
                 <button class="btn-card-blue" onclick="closeModal()" style="margin-top: 15px;">Close Window</button>
             </div>
@@ -1102,17 +1102,20 @@
 
         // Theme Toggle Logic
         const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeIcon = document.getElementById('themeIcon');
         const themeText = document.getElementById('themeText');
 
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             if (currentTheme === 'light') {
                 document.documentElement.setAttribute('data-theme', 'dark');
-                themeText.textContent = 'Dark Theme';
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Dark';
                 localStorage.setItem('theme', 'dark');
             } else {
                 document.documentElement.setAttribute('data-theme', 'light');
-                themeText.textContent = 'Light Theme';
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light';
                 localStorage.setItem('theme', 'light');
             }
         }
@@ -1120,7 +1123,8 @@
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
-            themeText.textContent = 'Light Theme';
+            themeIcon.textContent = '☀️';
+            themeText.textContent = 'Light';
         }
 
         // Modal Logic
