@@ -23,11 +23,30 @@
             padding: 25px 0;
             text-align: center;
         }
+        
+        /* Live Action Animated Title */
         header h1 {
             margin-bottom: 5px;
             font-size: 2.2rem;
             letter-spacing: 1px;
+            display: inline-block;
+            background: linear-gradient(90deg, #ffffff, #ffaa66, #ffffff, #99ccff, #ffffff);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: liveShine 4s linear infinite;
         }
+
+        @keyframes liveShine {
+            0% {
+                background-position: 0% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
         header p {
             font-size: 1rem;
             opacity: 0.9;
@@ -626,7 +645,6 @@
                     <option value="10kg Domestic Cylinder">10 kg Domestic Cylinder</option>
                     <option value="14.2kg Domestic Cylinder">14.2 kg Domestic Cylinder</option>
                     <option value="19kg Commercial Cylinder">19 kg Commercial Cylinder</option>
-                    
                 `;
             } else {
                 tabScale.classList.add('active');
