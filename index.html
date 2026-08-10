@@ -204,7 +204,7 @@
             font-size: 0.95rem;
             cursor: pointer;
         }
-        .nav-links a:hover { color: var(--accent-cyan); }
+        .nav-links a:hover, .nav-links a.active-link { color: var(--accent-cyan); }
 
         .theme-toggle-btn {
             background: var(--card-bg);
@@ -250,54 +250,6 @@
             max-width: 1000px;
             margin: 20px auto;
             padding: 15px;
-        }
-
-        /* DIVISION FILTER SWITCHER BUTTONS */
-        .division-bar {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-
-        .div-btn {
-            padding: 12px 20px;
-            border-radius: 30px;
-            border: 1px solid var(--border-color);
-            background: var(--card-bg);
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: var(--card-shadow);
-            transition: all 0.3s ease;
-        }
-
-        .div-btn:hover {
-            border-color: var(--accent-cyan);
-            color: var(--text-heading);
-        }
-
-        .div-btn.active-all {
-            background: linear-gradient(135deg, var(--accent-orange), var(--accent-cyan));
-            color: #ffffff;
-            border-color: transparent;
-        }
-
-        .div-btn.active-lpg {
-            background: var(--accent-orange);
-            color: #ffffff;
-            border-color: var(--accent-orange);
-        }
-
-        .div-btn.active-scale {
-            background: var(--accent-cyan);
-            color: #0b0f19;
-            border-color: var(--accent-cyan);
         }
 
         /* Hero / About Card */
@@ -347,7 +299,7 @@
         /* SHOWCASE GRID */
         .showcase-header {
             text-align: center;
-            margin: 30px 0 20px 0;
+            margin: 20px 0 25px 0;
         }
         .showcase-header h2 {
             font-size: 1.6rem;
@@ -374,10 +326,6 @@
             flex-direction: column;
             position: relative;
             box-shadow: var(--card-shadow);
-        }
-        
-        .showcase-card.filtered-out {
-            display: none !important;
         }
 
         .showcase-card:hover {
@@ -509,11 +457,6 @@
             gap: 12px;
             flex-wrap: wrap;
             box-shadow: var(--card-shadow);
-        }
-        .star-rating {
-            font-size: 1.2rem;
-            color: #ffaa00;
-            font-weight: bold;
         }
 
         /* Contact Section Box */
@@ -699,33 +642,28 @@
                     Menu
                 </button>
                 <div class="dropdown-content">
-                    <div class="menu-section-header">Navigation</div>
-                    <a href="javascript:void(0)" onclick="navClick('home')">Home</a>
-                    <a href="javascript:void(0)" onclick="navClick('showcase')">Products</a>
-                    <a href="javascript:void(0)" onclick="navClick('about')">ℹ️ About Us</a>
-                    <a href="javascript:void(0)" onclick="navClick('contact')">📍 Contact</a>
+                    <div class="menu-section-header">Pages</div>
+                    <a href="javascript:void(0)" onclick="switchPage('home')">Home</a>
+                    <a href="javascript:void(0)" onclick="switchPage('lpg')">LPG Energy Division Page</a>
+                    <a href="javascript:void(0)" onclick="switchPage('scale')">Scale Precision Division Page</a>
+                    <a href="javascript:void(0)" onclick="switchPage('contact')">Contact Us</a>
                     
                     <div class="menu-divider"></div>
-                    <div class="menu-section-header">Divisions</div>
-                    <a href="javascript:void(0)" onclick="filterDivision('lpg')">🔥 LPG Energy Division</a>
-                    <a href="javascript:void(0)" onclick="filterDivision('scale')">⚖️ Scale Precision Division</a>
-                    
-                    <div class="menu-divider"></div>
-                    <a href="javascript:void(0)" onclick="navClickAdmin()" style="color: var(--accent-orange); font-weight: bold;">Admin Only</a>
+                    <a href="javascript:void(0)" onclick="switchPage('admin')" style="color: var(--accent-orange); font-weight: bold;">Admin Only</a>
                 </div>
             </div>
 
             <div class="nav-links">
-                <a onclick="showMainPage('home')">Home</a>
-                <a onclick="showMainPage('showcase')">Products</a>
-                <a onclick="showMainPage('about')">About Us</a>
-                <a onclick="showMainPage('contact')">Contact</a>
-                <a onclick="showAdminPage()">Admin Only</a>
+                <a onclick="switchPage('home')">Home</a>
+                <a onclick="switchPage('lpg')">LPG Energy Division</a>
+                <a onclick="switchPage('scale')">Scale Precision Division</a>
+                <a onclick="switchPage('contact')">Contact</a>
+                <a onclick="switchPage('admin')">Admin Only</a>
             </div>
         </div>
 
         <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">
-            <span id="themeIcon">🌙</span> <span id="themeText">Dark</span>
+            <span id="themeIcon">Mode</span> <span id="themeText">Dark</span>
         </button>
     </nav>
 
@@ -736,11 +674,9 @@
         </svg>
     </a>
 
-    <!-- MAIN PAGE VIEW -->
-    <div id="mainPageView" class="page-view container">
-        
-        <!-- Hero / About Section -->
-        <section class="hero-card" id="about">
+    <!-- PAGE 1: HOME PAGE -->
+    <div id="homePage" class="page-view container">
+        <section class="hero-card">
             <h2 class="section-title">Precision Equipment &amp; Trusted Energy</h2>
             <p class="tagline">Your local multi-industry partner in Matiswar Bazar</p>
             <p>
@@ -748,94 +684,14 @@
             </p>
         </section>
 
-        <!-- DIVISION FILTER BAR -->
-        <div class="division-bar">
-            <button class="div-btn active-all" id="btn-all" onclick="filterDivision('all')">🌐 All Products</button>
-            <button class="div-btn" id="btn-lpg" onclick="filterDivision('lpg')">🔥 LPG Energy Division</button>
-            <button class="div-btn" id="btn-scale" onclick="filterDivision('scale')">⚖️ Scale Precision Division</button>
+        <div style="margin: 30px 0; text-align: center;">
+            <h3 style="color: var(--text-heading); margin-bottom: 15px;">Select Division</h3>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn-card-orange" style="max-width: 300px; padding: 15px;" onclick="switchPage('lpg')">Visit LPG Energy Division</button>
+                <button class="btn-card-blue" style="max-width: 300px; padding: 15px;" onclick="switchPage('scale')">Visit Scale Precision Division</button>
+            </div>
         </div>
 
-        <!-- PRODUCT SHOWCASE CARDS -->
-        <section id="showcase">
-            <div class="showcase-header">
-                <h2 id="showcase-title">Explore Enterprise Catalog</h2>
-                <p id="showcase-subtitle">Select a service branch above or click any product to request service!</p>
-            </div>
-
-            <div class="showcase-grid">
-                
-                <!-- Card 1: 14.2kg Domestic Cylinder -->
-                <div class="showcase-card lpg-card">
-                    <span class="card-tag">Official Indane</span>
-                    <div class="card-img-wrapper">
-                        <img src="14 kg.png" alt="14.2kg Domestic Cylinder">
-                    </div>
-                    <div class="card-content">
-                        <h3>14.2 kg Domestic Cylinder</h3>
-                        <p>Standard household LPG fuel connection with strict official safety protocols.</p>
-                        <ul class="card-specs">
-                            <li><span>✓</span> Fast Sub-Dealer Booking</li>
-                            <li><span>✓</span> Verified Safety Checks</li>
-                        </ul>
-                        <button class="btn-card-orange" onclick="openModalWithOption('lpg', '14.2kg Domestic Cylinder')">Book Gas Refill</button>
-                    </div>
-                </div>
-
-                <!-- Card 2: Suraksha Hosepipe -->
-                <div class="showcase-card lpg-card">
-                    <span class="card-tag">LPG Safety Accessory</span>
-                    <div class="card-img-wrapper">
-                        <img src="hosepipe.png" alt="Suraksha LPG Hosepipe">
-                    </div>
-                    <div class="card-content">
-                        <h3>Suraksha LPG Hosepipe</h3>
-                        <p>High-grade, steel-reinforced safety rubber hosepipe for certified leak-proof connection.</p>
-                        <ul class="card-specs">
-                            <li><span>✓</span> Fire &amp; Rat Resistant</li>
-                            <li><span>✓</span> ISI Certified Safety Standard</li>
-                        </ul>
-                        <button class="btn-card-orange" onclick="openModalWithOption('lpg', 'Suraksha Hosepipe Replacement')">Order Safety Pipe</button>
-                    </div>
-                </div>
-
-                <!-- Card 3: 30kg Tabletop Scale -->
-                <div class="showcase-card scale-card">
-                    <span class="card-tag">Sales &amp; Repair</span>
-                    <div class="card-img-wrapper">
-                        <img src="30kg.png" alt="30kg Tabletop Scale">
-                    </div>
-                    <div class="card-content">
-                        <h3>30 kg Tabletop Digital Scale</h3>
-                        <p>Compact, high-precision electronic scale ideal for retail shops and grocery markets.</p>
-                        <ul class="card-specs">
-                            <li><span>✓</span> Dual Display &amp; Battery Back-up</li>
-                            <li><span>✓</span> Repair &amp; Calibration Service</li>
-                        </ul>
-                        <button class="btn-card-blue" onclick="openModalWithOption('scale', 'Buy a New Scale')">Request Scale Service</button>
-                    </div>
-                </div>
-
-                <!-- Card 4: 100kg - 300kg Platform Scale -->
-                <div class="showcase-card scale-card">
-                    <span class="card-tag">Commercial Machinery</span>
-                    <div class="card-img-wrapper">
-                        <img src="100kg.png" alt="100kg - 300kg Heavy Platform Scale">
-                    </div>
-                    <div class="card-content">
-                        <h3>100kg – 300kg Platform Scale</h3>
-                        <p>Heavy-duty steel platform scales for commercial loads, agricultural, and wholesale trade.</p>
-                        <ul class="card-specs">
-                            <li><span>✓</span> Heavy-Load Capacity (Up to 300kg)</li>
-                            <li><span>✓</span> On-Site / Shop Repair</li>
-                        </ul>
-                        <button class="btn-card-blue" onclick="openModalWithOption('scale', 'Scale Repair &amp; Calibration')">Request Scale Service</button>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Why Choose Us Grid -->
         <div style="margin-top: 40px;">
             <h3 style="text-align: center; margin-bottom: 20px; color: var(--text-heading);">Why Trust S.Ali Enterprise?</h3>
             <div class="features-grid">
@@ -854,27 +710,115 @@
             </div>
         </div>
 
-        <!-- Rating Badge -->
         <div class="rating-badge">
-            <span class="star-rating">★ 4.5 Stars</span>
+            <span style="color: #ffaa00; font-weight: bold; font-size: 1.2rem;">4.5 / 5.0 Rating</span>
             <span style="color: var(--text-muted); font-size: 0.9rem;">Trusted by <strong>1,000+ Happy Customers</strong> across Matiswar &amp; surrounds</span>
         </div>
-
-        <!-- CONTACT SECTION -->
-        <section class="contact-box" id="contact">
-            <h3>📍 Visit or Contact Us</h3>
-            <p style="margin-bottom: 8px;"><strong>S.Ali Enterprise</strong></p>
-            <p style="color: var(--text-muted);">Matiswar Bazar, Matiswar, Moinaguri, Purba Barddhaman, 713146</p>
-            <p style="color: var(--text-muted); margin-top: 5px;">✉️ Email: <strong>isajidx19@gmail.com</strong></p>
-            <p style="color: var(--accent-cyan); font-weight: bold; margin-top: 10px;">🕒 Store Hours: Monday – Sunday (8:00 AM – 8:00 PM)</p>
-        </section>
-
     </div>
 
-    <!-- VIEW 2: FULL SEPARATE ADMIN PAGE -->
-    <div id="adminPageView" class="page-view hidden admin-page-container">
+    <!-- PAGE 2: LPG ENERGY DIVISION PAGE -->
+    <div id="lpgPage" class="page-view hidden container">
+        <div class="showcase-header">
+            <h2>LPG Energy Division</h2>
+            <p>Official Indane refill bookings, new gas connections, and certified safety accessories.</p>
+        </div>
+
+        <div class="showcase-grid">
+            <!-- Product 1: 14.2kg Domestic Cylinder -->
+            <div class="showcase-card">
+                <span class="card-tag">Official Indane</span>
+                <div class="card-img-wrapper">
+                    <img src="14 kg.png" alt="14.2kg Domestic Cylinder">
+                </div>
+                <div class="card-content">
+                    <h3>14.2 kg Domestic Cylinder</h3>
+                    <p>Standard household LPG fuel connection with strict official safety protocols.</p>
+                    <ul class="card-specs">
+                        <li><span>✓</span> Fast Sub-Dealer Booking</li>
+                        <li><span>✓</span> Verified Safety Checks</li>
+                    </ul>
+                    <button class="btn-card-orange" onclick="openModalWithOption('lpg', '14.2kg Domestic Cylinder')">Book Gas Refill</button>
+                </div>
+            </div>
+
+            <!-- Product 2: Suraksha Hosepipe -->
+            <div class="showcase-card">
+                <span class="card-tag">LPG Safety Accessory</span>
+                <div class="card-img-wrapper">
+                    <img src="hosepipe.png" alt="Suraksha LPG Hosepipe">
+                </div>
+                <div class="card-content">
+                    <h3>Suraksha LPG Hosepipe</h3>
+                    <p>High-grade, steel-reinforced safety rubber hosepipe for certified leak-proof connection.</p>
+                    <ul class="card-specs">
+                        <li><span>✓</span> Fire &amp; Rat Resistant</li>
+                        <li><span>✓</span> ISI Certified Safety Standard</li>
+                    </ul>
+                    <button class="btn-card-orange" onclick="openModalWithOption('lpg', 'Suraksha Hosepipe Replacement')">Order Safety Pipe</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: SCALE PRECISION DIVISION PAGE -->
+    <div id="scalePage" class="page-view hidden container">
+        <div class="showcase-header">
+            <h2>Scale Precision Division</h2>
+            <p>Digital tabletop scales, heavy platform machinery sales, technical repair, and calibration.</p>
+        </div>
+
+        <div class="showcase-grid">
+            <!-- Product 3: 30kg Tabletop Scale -->
+            <div class="showcase-card">
+                <span class="card-tag">Sales &amp; Repair</span>
+                <div class="card-img-wrapper">
+                    <img src="30kg.png" alt="30kg Tabletop Scale">
+                </div>
+                <div class="card-content">
+                    <h3>30 kg Tabletop Digital Scale</h3>
+                    <p>Compact, high-precision electronic scale ideal for retail shops and grocery markets.</p>
+                    <ul class="card-specs">
+                        <li><span>✓</span> Dual Display &amp; Battery Back-up</li>
+                        <li><span>✓</span> Repair &amp; Calibration Service</li>
+                    </ul>
+                    <button class="btn-card-blue" onclick="openModalWithOption('scale', 'Buy a New Scale')">Request Scale Service</button>
+                </div>
+            </div>
+
+            <!-- Product 4: 100kg - 300kg Platform Scale -->
+            <div class="showcase-card">
+                <span class="card-tag">Commercial Machinery</span>
+                <div class="card-img-wrapper">
+                    <img src="100kg.png" alt="100kg - 300kg Heavy Platform Scale">
+                </div>
+                <div class="card-content">
+                    <h3>100kg – 300kg Platform Scale</h3>
+                    <p>Heavy-duty steel platform scales for commercial loads, agricultural, and wholesale trade.</p>
+                    <ul class="card-specs">
+                        <li><span>✓</span> Heavy-Load Capacity (Up to 300kg)</li>
+                        <li><span>✓</span> On-Site / Shop Repair</li>
+                    </ul>
+                    <button class="btn-card-blue" onclick="openModalWithOption('scale', 'Scale Repair &amp; Calibration')">Request Scale Service</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT SECTION (SHARED ACROSS PAGES) -->
+    <div id="contactSection" class="container">
+        <section class="contact-box" id="contact">
+            <h3>Visit or Contact Us</h3>
+            <p style="margin-bottom: 8px;"><strong>S.Ali Enterprise</strong></p>
+            <p style="color: var(--text-muted);">Matiswar Bazar, Matiswar, Moinaguri, Purba Barddhaman, 713146</p>
+            <p style="color: var(--text-muted); margin-top: 5px;">Email: <strong>isajidx19@gmail.com</strong></p>
+            <p style="color: var(--accent-cyan); font-weight: bold; margin-top: 10px;">Store Hours: Monday – Sunday (8:00 AM – 8:00 PM)</p>
+        </section>
+    </div>
+
+    <!-- PAGE 4: ADMIN PAGE -->
+    <div id="adminPage" class="page-view hidden admin-page-container">
         <div id="adminLoginCard" class="admin-login-card">
-            <h2 style="color: var(--accent-orange); margin-bottom: 10px;">🔒 Admin Portal Login</h2>
+            <h2 style="color: var(--accent-orange); margin-bottom: 10px;">Admin Portal Login</h2>
             <p style="color: var(--text-muted); margin-bottom: 20px;">Authorized access only. Please sign in to manage shop records.</p>
             
             <form onsubmit="handleAdminLogin(event)">
@@ -887,15 +831,15 @@
                     <input type="password" id="adminPassword" placeholder="Enter PIN" required>
                 </div>
                 <button type="submit" class="btn-card-orange" style="width: 100%; margin-top: 10px; padding: 12px;">Login to Portal</button>
-                <button type="button" class="btn-card-blue" style="width: 100%; margin-top: 10px; padding: 10px; background: transparent; border: 1px solid var(--border-color); color: var(--text-main);" onclick="showMainPage('home')">← Back to Main Website</button>
+                <button type="button" class="btn-card-blue" style="width: 100%; margin-top: 10px; padding: 10px; background: transparent; border: 1px solid var(--border-color); color: var(--text-main);" onclick="switchPage('home')">Back to Home</button>
             </form>
         </div>
 
         <div id="adminDashboard" class="admin-dashboard" style="display: none;">
             <div class="dashboard-header">
-                <h2 style="color: var(--accent-orange); font-size: 1.5rem;">📋 Shop Management Dashboard</h2>
+                <h2 style="color: var(--accent-orange); font-size: 1.5rem;">Shop Management Dashboard</h2>
                 <div>
-                    <button class="btn-card-blue" style="padding: 6px 14px; width: auto; font-size: 0.85rem;" onclick="showMainPage('home')">Website</button>
+                    <button class="btn-card-blue" style="padding: 6px 14px; width: auto; font-size: 0.85rem;" onclick="switchPage('home')">Website</button>
                     <button class="btn-delete" style="padding: 6px 14px; width: auto; font-size: 0.85rem;" onclick="logoutAdmin()">Logout</button>
                 </div>
             </div>
@@ -926,7 +870,7 @@
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="btn-card-orange" style="padding: 12px; font-size: 1rem;">➕ Save Customer Record</button>
+                <button type="submit" class="btn-card-orange" style="padding: 12px; font-size: 1rem;">Save Customer Record</button>
             </form>
 
             <div style="margin-top: 30px;">
@@ -953,7 +897,7 @@
     <!-- Footer -->
     <footer>
         <p><strong>S.Ali Enterprise</strong></p>
-        <p>📍 Matiswar Bazar, Matiswar, Moinaguri, Purba Barddhaman, 713146 | ✉️ isajidx19@gmail.com</p>
+        <p>Matiswar Bazar, Matiswar, Moinaguri, Purba Barddhaman, 713146 | isajidx19@gmail.com</p>
         <p style="margin-top: 15px; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 S.Ali Enterprise. Built with care.</p>
     </footer>
 
@@ -966,8 +910,8 @@
                 <h3 style="color: var(--accent-cyan); text-align: center; margin-bottom: 5px;">Service Request Form</h3>
                 
                 <div class="tab-group">
-                    <button type="button" class="tab-btn active" id="tabLpg" onclick="switchTab('lpg')">🔥 LPG Service</button>
-                    <button type="button" class="tab-btn" id="tabScale" onclick="switchTab('scale')">⚖️ Scale Service</button>
+                    <button type="button" class="tab-btn active" id="tabLpg" onclick="switchTab('lpg')">LPG Service</button>
+                    <button type="button" class="tab-btn" id="tabScale" onclick="switchTab('scale')">Scale Service</button>
                 </div>
 
                 <form id="serviceForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
@@ -1004,7 +948,7 @@
             </div>
 
             <div class="success-box" id="successBox">
-                <h3>✅ Request Submitted!</h3>
+                <h3>Request Submitted</h3>
                 <p style="margin-top: 10px; color: var(--text-main);">Your details have been sent directly to <strong>S.Ali Enterprise</strong>. We will contact you shortly.</p>
                 <button class="btn-card-blue" onclick="closeModal()" style="margin-top: 15px;">Close Window</button>
             </div>
@@ -1041,44 +985,39 @@
         }
         window.addEventListener('DOMContentLoaded', typeWriterLoop);
 
-        // DIVISION FILTERING LOGIC
-        function filterDivision(type) {
+        // PAGE SWITCHING LOGIC
+        function switchPage(page) {
             closeMenu();
-            const btnAll = document.getElementById('btn-all');
-            const btnLpg = document.getElementById('btn-lpg');
-            const btnScale = document.getElementById('btn-scale');
             
-            const lpgCards = document.querySelectorAll('.lpg-card');
-            const scaleCards = document.querySelectorAll('.scale-card');
+            const homePage = document.getElementById('homePage');
+            const lpgPage = document.getElementById('lpgPage');
+            const scalePage = document.getElementById('scalePage');
+            const adminPage = document.getElementById('adminPage');
+            const contactSec = document.getElementById('contactSection');
 
-            const title = document.getElementById('showcase-title');
-            const subtitle = document.getElementById('showcase-subtitle');
+            // Hide all pages
+            [homePage, lpgPage, scalePage, adminPage].forEach(p => p.classList.add('hidden'));
 
-            // Reset Active Class
-            [btnAll, btnLpg, btnScale].forEach(btn => btn.className = 'div-btn');
-
-            if (type === 'lpg') {
-                btnLpg.classList.add('active-lpg');
-                lpgCards.forEach(card => card.classList.remove('filtered-out'));
-                scaleCards.forEach(card => card.classList.add('filtered-out'));
-                title.textContent = "🔥 LPG Energy Division Services";
-                subtitle.textContent = "Official Indane refill bookings, new gas connections, and safety hose replacement.";
-            } else if (type === 'scale') {
-                btnScale.classList.add('active-scale');
-                scaleCards.forEach(card => card.classList.remove('filtered-out'));
-                lpgCards.forEach(card => card.classList.add('filtered-out'));
-                title.textContent = "⚖️ Scale Precision Division Services";
-                subtitle.textContent = "Digital tabletop scales, heavy platform machinery sales, technical repair & calibration.";
+            if (page === 'lpg') {
+                lpgPage.classList.remove('hidden');
+                contactSec.style.display = 'block';
+            } else if (page === 'scale') {
+                scalePage.classList.remove('hidden');
+                contactSec.style.display = 'block';
+            } else if (page === 'admin') {
+                adminPage.classList.remove('hidden');
+                contactSec.style.display = 'none';
+            } else if (page === 'contact') {
+                homePage.classList.remove('hidden');
+                contactSec.style.display = 'block';
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                return;
             } else {
-                btnAll.classList.add('active-all');
-                lpgCards.forEach(card => card.classList.remove('filtered-out'));
-                scaleCards.forEach(card => card.classList.remove('filtered-out'));
-                title.textContent = "Explore Enterprise Catalog";
-                subtitle.textContent = "Select a service branch above or click any product to request service!";
+                homePage.classList.remove('hidden');
+                contactSec.style.display = 'block';
             }
 
-            // Scroll down to showcase area smoothly if clicked from menu
-            document.getElementById('showcase').scrollIntoView({ behavior: 'smooth' });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // Toggle Dropdown Menu
@@ -1094,33 +1033,6 @@
 
         document.addEventListener('click', closeMenu);
 
-        function navClick(sectionId) {
-            closeMenu();
-            showMainPage(sectionId);
-        }
-
-        function navClickAdmin() {
-            closeMenu();
-            showAdminPage();
-        }
-
-        function showMainPage(sectionId) {
-            document.getElementById('mainPageView').classList.remove('hidden');
-            document.getElementById('adminPageView').classList.add('hidden');
-            if (sectionId && sectionId !== 'home') {
-                const targetEl = document.getElementById(sectionId);
-                if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-
-        function showAdminPage() {
-            document.getElementById('mainPageView').classList.add('hidden');
-            document.getElementById('adminPageView').classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
         // Theme Toggle Logic
         const themeToggleBtn = document.getElementById('themeToggleBtn');
         const themeIcon = document.getElementById('themeIcon');
@@ -1130,12 +1042,10 @@
             const currentTheme = document.documentElement.getAttribute('data-theme');
             if (currentTheme === 'light') {
                 document.documentElement.setAttribute('data-theme', 'dark');
-                themeIcon.textContent = '🌙';
                 themeText.textContent = 'Dark';
                 localStorage.setItem('theme', 'dark');
             } else {
                 document.documentElement.setAttribute('data-theme', 'light');
-                themeIcon.textContent = '☀️';
                 themeText.textContent = 'Light';
                 localStorage.setItem('theme', 'light');
             }
@@ -1143,7 +1053,6 @@
 
         if (localStorage.getItem('theme') === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
-            themeIcon.textContent = '☀️';
             themeText.textContent = 'Light';
         }
 
@@ -1259,7 +1168,7 @@
         function logoutAdmin() {
             document.getElementById('adminDashboard').style.display = 'none';
             document.getElementById('adminLoginCard').style.display = 'block';
-            showMainPage('home');
+            switchPage('home');
         }
 
         function saveCustomerRecord(event) {
