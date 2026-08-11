@@ -758,7 +758,7 @@
 
         <div class="showcase-header">
             <h2>LPG Energy Division</h2>
-            <p>Official Indane refill bookings, new gas connections, eKYC verification, and certified safety accessories.</p>
+            <p>Official Indane refill bookings, new gas connections, and certified safety accessories.</p>
         </div>
 
         <div class="showcase-grid">
@@ -793,23 +793,6 @@
                         <li><span>✓</span> ISI Certified Safety Standard</li>
                     </ul>
                     <button class="btn-card-orange" onclick="openModalWithOption('lpg', 'Suraksha Hosepipe Replacement')">Order Safety Pipe</button>
-                </div>
-            </div>
-
-            <!-- Product 3: eKYC Verification Request -->
-            <div class="showcase-card">
-                <span class="card-tag">Official Aadhaar / Indane</span>
-                <div class="card-img-wrapper">
-                    <img src="ekyc.png" alt="eKYC Verification Request">
-                </div>
-                <div class="card-content">
-                    <h3>eKYC Verification Request</h3>
-                    <p>Submit your details online to initiate or update your Indane LPG Aadhaar eKYC status.</p>
-                    <ul class="card-specs">
-                        <li><span>✓</span> Fast Digital Processing</li>
-                        <li><span>✓</span> Subsidy Status Check</li>
-                    </ul>
-                    <button class="btn-card-orange" onclick="openModalWithOption('ekyc', 'Aadhaar eKYC Verification')">Request eKYC</button>
                 </div>
             </div>
         </div>
@@ -924,7 +907,6 @@
                         <select id="adminServiceType">
                             <option value="14.2kg Refill">14.2kg Refill</option>
                             <option value="New LPG Connection">New LPG Connection</option>
-                            <option value="eKYC Request">eKYC Request</option>
                             <option value="Suraksha Hosepipe">Suraksha Hosepipe</option>
                             <option value="Scale Repair">Scale Repair</option>
                             <option value="New Scale Purchase">New Scale Purchase</option>
@@ -972,7 +954,6 @@
                 
                 <div class="tab-group">
                     <button type="button" class="tab-btn active" id="tabLpg" onclick="switchTab('lpg')">LPG Service</button>
-                    <button type="button" class="tab-btn" id="tabEkyc" onclick="switchTab('ekyc')">eKYC Request</button>
                     <button type="button" class="tab-btn" id="tabScale" onclick="switchTab('scale')">Scale Service</button>
                 </div>
 
@@ -1151,19 +1132,14 @@
 
         function switchTab(type) {
             const tabLpg = document.getElementById('tabLpg');
-            const tabEkyc = document.getElementById('tabEkyc');
             const tabScale = document.getElementById('tabScale');
             const optionLabel = document.getElementById('optionLabel');
             const selectOption = document.getElementById('serviceOption');
             const serviceTypeInput = document.getElementById('serviceType');
 
-            // Reset tab styling
-            tabLpg.classList.remove('active');
-            tabEkyc.classList.remove('active');
-            tabScale.classList.remove('active');
-
             if (type === 'lpg') {
                 tabLpg.classList.add('active');
+                tabScale.classList.remove('active');
                 serviceTypeInput.value = 'LPG Service';
                 optionLabel.textContent = 'Request Type *';
                 selectOption.innerHTML = `
@@ -1173,17 +1149,9 @@
                     <option value="14.2kg Domestic Cylinder">14.2 kg Domestic Cylinder</option>
                     <option value="19kg Commercial Cylinder">19 kg Commercial Cylinder</option>
                 `;
-            } else if (type === 'ekyc') {
-                tabEkyc.classList.add('active');
-                serviceTypeInput.value = 'eKYC Request';
-                optionLabel.textContent = 'eKYC Service Type *';
-                selectOption.innerHTML = `
-                    <option value="Aadhaar eKYC Verification">Aadhaar eKYC Verification</option>
-                    <option value="New Connection eKYC">New Connection eKYC</option>
-                    <option value="Subsidy / Bank Linking Check">Subsidy / Bank Linking Check</option>
-                `;
             } else {
                 tabScale.classList.add('active');
+                tabLpg.classList.remove('active');
                 serviceTypeInput.value = 'Scale Service';
                 optionLabel.textContent = 'Scale Option Needed *';
                 selectOption.innerHTML = `
